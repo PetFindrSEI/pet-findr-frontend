@@ -37,7 +37,7 @@ function Navigation(props) {
         </h1>
         <div className={styles.buttonsArea}>
           <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 0.975 }}>
-            <Link to='/'>Login</Link>
+            <Link to='/login'>Login</Link>
           </motion.div>
           {/* Hamburger Button */}
           <motion.button
@@ -48,7 +48,7 @@ function Navigation(props) {
               toggled={navbarOpen}
               toggle={setNavbarOpen}
               size={20}
-			  className={styles.hamburger}
+              className={styles.hamburger}
             />
           </motion.button>
         </div>

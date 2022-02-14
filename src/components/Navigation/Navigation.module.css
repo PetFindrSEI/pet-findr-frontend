@@ -1,12 +1,15 @@
 /* Navigation bar */
 .navBar {
+  position: fixed;
   display: flex;
   padding: 1.5rem 1rem;
   justify-content: space-between;
   align-items: center;
   height: 60px;
+  width: 100%;
   background-color: #fcfcfc;
   /* background-color: #868686; */
+  z-index: 10;
 }
 
 /* Menu (Hamburger) Button */
@@ -33,7 +36,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 9;
   background-color: #854ad0;
   width: 100%;
   margin: 0;
@@ -41,6 +44,7 @@
   list-style-type: none;
   text-decoration: none;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding-top: 60px;
 }
 /* Links */
 .menuNav a {
@@ -99,7 +103,6 @@
 .buttonsArea a:hover {
   color: black;
 }
-
 
 /* PetFindr Logo */
 .navBar h1 {
