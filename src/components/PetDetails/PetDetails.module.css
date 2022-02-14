@@ -1,0 +1,23 @@
+.detailsContainer {
+    margin: 5% 10%;
+}
+.name {
+    background-color: #BBF2C9;
+    border-radius: 50px;
+    width: auto;
+}
+.status {
+    color: #37B379;
+    font-weight: 400;
+    float: right;
+}
+
+.imgDiv {
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.img {
+    height: 300px;
+}

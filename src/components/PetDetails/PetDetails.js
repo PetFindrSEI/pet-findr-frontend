@@ -28,7 +28,30 @@ function PetDetails(props) {
 
 	return (
 		<div className={styles.detailsContainer}>
-			<img src={pet.photo} alt={pet.name} />
+            <div>
+                <h4 className={styles.status}>Status: {pet.status}</h4>
+                <h3 className={styles.name}>{pet.name}</h3>
+                <div className={styles.imgDiv}>
+                    <img className={styles.img} src={pet.photo} alt={pet.name} />
+                </div>
+            </div>
+            <h3>Pet Descriptors</h3>
+            <hr />
+            <ul>
+                <li>Size: {pet.size}</li>
+                <li>Type/Breed: {pet.type}</li>
+                <li>Gender: {pet.gender}</li>
+                <li>Color: {pet.color}</li>
+            </ul>
+            <p>Description: {pet.description}</p>
+            <br />
+            <h3>Location Info</h3>
+            <hr />
+            <ul>
+                <li>Last Location: {pet.location}</li>
+                <li>Date: {pet.reported_time}</li>
+            </ul>
+            <button>Contact</button>
 		</div>
 	);
 }
