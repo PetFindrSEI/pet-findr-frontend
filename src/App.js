@@ -40,7 +40,6 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/report-pet' element={<AddPets />} />
-            <Route path='/' element={<Home />}/>
             <Route path='/pets' element={<PetDashboard/>}/>
             <Route path='/pets/:id' element={<PetDetails />}></Route>
           </Routes>
