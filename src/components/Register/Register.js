@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './Register.module.css';
 
 function Register(props) {
+  
   return (
     <div className={styles.registerContainer}>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'>

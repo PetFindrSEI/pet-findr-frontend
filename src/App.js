@@ -1,7 +1,11 @@
+// Styling
 import 'normalize.css';
 import './App.css';
 import { FaPaw } from 'react-icons/fa';
+// Dependencies
 import { Routes, Route, Link } from 'react-router-dom';
+import { UserProvider } from './context/UserContext';
+// Components
 import Navigation from './components/Navigation/Navigation';
 import Home from './components/Home/Home';
 import Footer from './components/Footer/Footer';
@@ -19,21 +23,23 @@ function App() {
       <div className='paw-two'>
         <FaPaw />
       </div>
-      <header>
-        <Navigation />
-      </header>
-      <main>
-        <ReportPet />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/report-pet' element={<AddPets />} />
-        </Routes>
-      </main>
-      <footer>
-        <Footer />
-      </footer>
+      <UserProvider>
+        <header>
+          <Navigation />
+        </header>
+        <main>
+          <ReportPet />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/report-pet' element={<AddPets />} />
+          </Routes>
+        </main>
+        <footer>
+          <Footer />
+        </footer>
+      </UserProvider>
     </div>
   );
 }
