@@ -20,8 +20,8 @@ function Home(props) {
           <motion.button
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={{ backgroundColor: '#854ad0', color: 'white' }}
-            whileTap={{ backgroundColor: '#a87cdf' }}
+            whileHover={{ backgroundColor: '#854ad0', color: '#fff' }}
+            whileTap={{ backgroundColor: '#fff' }}
             onClick={() => navigate('/login')}>
             Login
           </motion.button>

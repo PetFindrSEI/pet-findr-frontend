@@ -27,7 +27,7 @@ function PetDashboard(props) {
             <hr />
             <section className={styles.petsContainer}>
                 {pets.map((pet) => (
-                    <Link to={`/pets/${pet.id}`} className={styles.link}>
+                    <Link to={`/pets/${pet.id}`} className={styles.link} key={pet.id}>
                         <div className={styles.petCard}>
                             <div className={styles.petImage}>
                                 <img src={pet.photo} alt={pet.name} />

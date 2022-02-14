@@ -3,21 +3,25 @@ import { useParams } from 'react-router-dom';
 import styles from './PetDetails.module.css';
 
 function PetDetails(props) {
-	const [pet, setPet] = useState([]);
+	const [pet, setPet] = useState(null);
 	const { id } = useParams();
 
-	useEffect(() => {
-		fetch(`https://petfindr-api.herokuapp.com/pets/${id}`)
-			.then((data) => {
-				data.json();
-				console.log(data);
-			})
-			.then((json) => {
-				setPet(json);
-			})
-			.catch(console.error);
-	}, []);
-
+    async function getPet() {
+        const url = `https://petfindr-api.herokuapp.com/pets/${id}`;
+        
+        try {
+            const res = await fetch(url);
+            const resJson = await res.json();
+            setPet(resJson);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    useEffect(() => {
+        getPet();
+    }, []);
+    
 	if (!pet) {
 		return <p>Loading pet details...</p>;
 	}
