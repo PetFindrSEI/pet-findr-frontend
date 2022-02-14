@@ -1,5 +1,5 @@
 .petsContainer {
-    display: grid;
+  display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	grid-auto-rows: minmax(200px, 1fr);
 	grid-gap: 5px;
@@ -8,37 +8,48 @@
 }
 
 .petCard {
-    border-radius: 10px;
-	display: grid;
-	max-width: 250px;
-	justify-content: center;
-	margin: 0.5em;
-	width: auto;
-	border: 1px solid grey;
+  border-radius: 10px;
+  display: grid;
+  max-width: 250px;
+  justify-content: center;
+  margin: 0.5em;
+  width: auto;
+  border: 1px solid grey;
 }
 
 .petImage {
-    height: 150px;
-	align-items: center;
-	display: flex;
-	width: 100%;
+  height: 150px;
+  align-items: center;
+  display: flex;
+  width: 100%;
 }
 
 .petImage img {
-	border-top-left-radius: 5%;
-	border-top-right-radius: 5%;
-	width: 249px;
-	height: 100%;
+  display: block;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  width: 249px;
+  height: 100%;
+  align-self: baseline;
+  object-fit: cover;
 }
 
 .cardTitle {
-    display: flex;
-    justify-content: space-between;
-	margin: 0px 5px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 5px;
 }
 .name {
-	color: black;
+  color: black;
 }
 .link {
-	text-decoration: none;
+  text-decoration: none;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid rgb(214, 77, 77);
+  margin: 1em 0;
+  padding: 0;
 }
