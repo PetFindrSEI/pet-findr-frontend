@@ -1,0 +1,160 @@
+.homeContainer {
+  height: fit-content;
+}
+/*! Main Hero Section */
+.heroSection {
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(../../assets/heroImg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.2s ease;
+}
+/* PetFindr - Lost or Found... Text */
+.heroText {
+  height: fit-content;
+  width: 100%;
+  background-color: #854ad0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+  margin: 0 auto;
+}
+.heroSection h2 {
+  color: white;
+  font-size: 4rem;
+  margin: 0 auto;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+.heroSection h3 {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin: 0 auto;
+  transition: all 0.2s ease;
+}
+
+/* Login Box */
+.heroInfoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  padding: 2rem;
+  height: fit-content;
+  width: 350px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.heroInfoBox h4 {
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+}
+/* Login Button */
+.heroInfoBox button {
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #854ad0;
+  background-color: white;
+  color: #854ad0;
+  border-radius: 5px;
+  margin: 1rem auto;
+  margin-top: 2rem;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+/* Register Link */
+.heroInfoBox a {
+  color: rgba(124, 137, 255, 1);
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+/*! Found Pet Info Section */
+.foundPetInfo {
+  height: 50vh;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+}
+.foundPetInfo img {
+  position: absolute;
+  width: 80%;
+  max-width: 600px;
+  height: 50vh;
+  object-fit: cover;
+}
+.foundPetTextBox {
+  z-index: 1;
+  height: fit-content;
+  width: 300px;
+  background-color: #14022b;
+  padding: 3rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+  margin-right: 1rem;
+}
+.foundPetTextBox p {
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: end;
+}
+/*! Lost Pet Info Section */
+.lostPetInfo {
+  height: 50vh;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+.lostPetInfo img {
+  position: absolute;
+  width: 80%;
+  max-width: 600px;
+  height: 50vh;
+  object-fit: cover;
+}
+.lostPetTextBox {
+  z-index: 1;
+  height: fit-content;
+  width: 300px;
+  background-color: #14022b;
+  padding: 3rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-right: auto;
+  margin-left: 1rem;
+}
+.lostPetTextBox p {
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 600px) {
+  .heroSection {
+    height: 50vh;
+  }
+  .heroSection h2 {
+    font-size: 3rem;
+  }
+  .heroSection h3 {
+    font-size: 1rem;
+  }
+}

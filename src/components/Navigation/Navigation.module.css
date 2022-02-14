@@ -1,0 +1,115 @@
+/* Navigation bar */
+.navBar {
+  position: fixed;
+  display: flex;
+  padding: 1.5rem 1rem;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  background-color: #fcfcfc;
+  /* background-color: #868686; */
+  z-index: 10;
+}
+
+/* Menu (Hamburger) Button */
+.navBar button {
+  border: none;
+  background-color: transparent;
+  color: black;
+  height: fit-content;
+  width: fit-content;
+  padding: 0;
+  font-weight: 10px;
+  transition: all 0.2s ease;
+  border-radius: 0.5rem;
+}
+.navBar button:hover {
+  background-color: #854ad0;
+  color: white;
+}
+
+/* Links on the menu */
+.menuNav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+  background-color: #854ad0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding-top: 60px;
+}
+/* Links */
+.menuNav a {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 95%;
+  margin: 0 auto;
+}
+/* Links Hover */
+.menuNav a:hover {
+  color: rgb(236, 236, 236);
+  background-color: #9365cf;
+}
+.menuNav a:active {
+  background-color: #8a5ec4;
+}
+.icon {
+  margin-right: 0.5rem;
+}
+
+.menuNav li {
+  width: 100%;
+  text-align: center;
+}
+/* Lines in the menu container */
+.menuNav span {
+  height: 1px;
+  width: 95%;
+  border: 1px solid #8d63c4;
+}
+
+/* Buttons Area (Menu and login) */
+.buttonsArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+/* Login Link */
+.buttonsArea a {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: #737272;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.buttonsArea a:hover {
+  color: black;
+}
+
+/* PetFindr Logo */
+.navBar h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.logo {
+  text-decoration: none;
+  color: black;
+}
