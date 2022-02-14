@@ -13,8 +13,14 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ReportPet from './components/ReportPet/ReportPet';
 import AddPets from './components/AddPets/AddPets';
+import './App.css';
+import PetDashboard from './components/PetDashboard/PetDashboard';
+import PetDetails from './components/PetDetails/PetDetails';
+import { useState } from 'react';
+
 
 function App() {
+
   return (
     <div className='App'>
       <div className='paw-one'>
@@ -34,6 +40,9 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/report-pet' element={<AddPets />} />
+            <Route path='/' element={<Home />}/>
+            <Route path='/pets' element={<PetDashboard/>}/>
+            <Route path='/pets/:id' element={<PetDetails />}></Route>
           </Routes>
         </main>
         <footer>
