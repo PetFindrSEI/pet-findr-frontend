@@ -3,8 +3,10 @@ import styles from './PetDashboard.module.css';
 import { Link } from 'react-router-dom';
 import Filter from '../Filter/Filter';
 
-function PetDashboard(props) {
+function PetDashboard({ petStatus }) {
   const [pets, setPets] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+
   const url = `https://petfindr-api.herokuapp.com/pets/`;
 
   useEffect(() => {
@@ -12,9 +14,23 @@ function PetDashboard(props) {
       .then((res) => res.json())
       .then((json) => {
         setPets(json);
+
+        if (petStatus.status === 'Found') {
+          const filteredFound = json.filter((foundPet) =>
+            foundPet.status.includes('Found')
+          );
+          setFiltered(filteredFound);
+        } else if (petStatus.status === 'Lost') {
+          const filteredFound = json.filter((lostPet) =>
+            lostPet.status.includes('Lost')
+          );
+          setFiltered(filteredFound);
+        } else if (petStatus.status === '') {
+          setFiltered(json);
+        }
       })
       .catch(console.error);
-  }, [url]);
+  }, [url, petStatus.status]);
 
   if (!pets) {
     return <p>Loading pets looking for their home...</p>;
@@ -25,9 +41,9 @@ function PetDashboard(props) {
       <Filter />
       <hr />
       <section className={styles.petsContainer}>
-        {pets.map((pet) => (
-          <div className={styles.petCard}>
-            <Link to={`/pets/${pet.id}`} className={styles.link} key={pet.id}>
+        {filtered.map((pet) => (
+          <div className={styles.petCard} key={pet.id}>
+            <Link to={`/dashboard/${pet.id}`} className={styles.link}>
               <div className={styles.petImage}>
                 <img src={pet.photo} alt={pet.name} />
               </div>

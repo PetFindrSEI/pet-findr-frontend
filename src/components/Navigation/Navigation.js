@@ -14,7 +14,7 @@ import { GoReport } from 'react-icons/go';
 // Framer Motion
 import { motion } from 'framer-motion';
 
-function Navigation(props) {
+function Navigation({ setPetStatus }) {
   const urlLocation = useLocation();
   const [navbarOpen, setNavbarOpen] = useState(false);
 
@@ -66,9 +66,26 @@ function Navigation(props) {
         </motion.li>
 
         <span></span>
+        {/* Home Link */}
+        <motion.li whileHover={{ scale: 1.05 }}>
+          <Link
+            to='/dashboard'
+            onClick={() => {
+              setPetStatus({ status: '' });
+            }}>
+            <AiOutlineHome className={styles.icon} />
+            Dashboard
+          </Link>
+        </motion.li>
+
+        <span></span>
         {/* Found Pets Link */}
         <motion.li whileHover={{ scale: 1.05 }}>
-          <Link to='/'>
+          <Link
+            to={`/dashboard/found`}
+            onClick={() => {
+              setPetStatus({ status: 'Found' });
+            }}>
             <BiSearchAlt className={styles.icon} />
             Found Pets
           </Link>
@@ -77,7 +94,11 @@ function Navigation(props) {
         <span></span>
         {/* Lost Pets Link */}
         <motion.li whileHover={{ scale: 1.05 }}>
-          <Link to='/'>
+          <Link
+            to={`/dashboard/lost`}
+            onClick={() => {
+              setPetStatus({ status: 'Lost' });
+            }}>
             <BsFillExclamationDiamondFill className={styles.icon} />
             Lost Pets
           </Link>

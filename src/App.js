@@ -18,8 +18,11 @@ import PetDashboard from './components/PetDashboard/PetDashboard';
 import PetDetails from './components/PetDetails/PetDetails';
 import { useState } from 'react';
 
-
 function App() {
+  const [petStatus, setPetStatus] = useState({
+    status: '',
+  });
+  console.log(petStatus);
 
   return (
     <div className='App'>
@@ -31,7 +34,7 @@ function App() {
       </div>
       <UserProvider>
         <header>
-          <Navigation />
+          <Navigation setPetStatus={setPetStatus} />
         </header>
         <main>
           <ReportPet />
@@ -40,7 +43,14 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/report-pet' element={<AddPets />} />
-            <Route path='/pets' element={<PetDashboard/>}/>
+            <Route
+              path='/dashboard'
+              element={<PetDashboard petStatus={petStatus} />}
+            />
+            <Route
+              path='/dashboard/:status'
+              element={<PetDashboard petStatus={petStatus} />}
+            />
             <Route path='/pets/:id' element={<PetDetails />}></Route>
           </Routes>
         </main>
