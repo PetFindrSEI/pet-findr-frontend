@@ -1,0 +1,110 @@
+/* Report Container */
+.reportContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
+}
+/* Report H2 */
+.reportContainer h2 {
+  font-weight: 600;
+  font-size: 2rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+/* Report Form */
+.reportForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  justify-content: center;
+}
+/* Options */
+.options {
+  display: flex;
+  flex-direction: column;
+}
+.options select {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem;
+}
+
+/* Name */
+.reportForm .name {
+  background: linear-gradient(135deg, #1028ff -20.64%, #7c89ff 85.66%);
+  width: 200px;
+  padding: 1rem 2rem;
+  padding-left: 2.5rem;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  /* margin-left: 9rem; */
+  margin-bottom: 1rem;
+}
+
+/* Name ::placeholder */
+.reportForm .name::placeholder {
+  color: white;
+}
+.reportForm .name:focus {
+  outline: none;
+}
+
+/* Pencil Edit Icon */
+.editIcon {
+  position: absolute;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: white;
+}
+.reportForm .photoContainer {
+  width: 100%;
+  max-width: 500px;
+  height: 250px;
+  border-radius: 10px;
+  background: #f8f8f8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+.reportForm .photo {
+  width: 500px;
+  height: 250px;
+  border-radius: 10px;
+  cursor: pointer;
+  padding-left: 5rem;
+  padding-top: 11.5rem;
+}
+
+/* Photo Icon */
+.photoIcon {
+  position: absolute;
+  font-size: 4rem;
+  margin-left: calc(250px - 2rem);
+  margin-top: calc(125px - 3rem);
+  color: #c4c4c4;
+  cursor: pointer;
+}
+
+/* Inputs */
+.reportForm input {
+  width: 250px;
+  padding: 0.3rem 0.5rem;
+  margin-bottom: 1rem;
+}
+/* TextArea */
+.reportForm textarea {
+    width: 100%;
+    max-width: 500px;
+  margin-bottom: 1rem;
+}
+
+/* Submit Button */
+.submitBtn {
+    width: fit-content;
+    padding: 0.3rem;
+}
