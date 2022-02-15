@@ -27,7 +27,12 @@ function Login({ handleSetLoggedIn }) {
         handleSetLoggedIn(data.auth_token);
         navigate('/');
       }
-    } catch (error) {}
+      if (response.status !== 200) {
+        setErrMsg(true);
+      }
+    } catch (error) {
+      setErrMsg(true);
+    }
   };
 
   // Handle Change
@@ -64,6 +69,13 @@ function Login({ handleSetLoggedIn }) {
             value={user.password}
             onChange={handleChange}
           />
+          {errMsg ? (
+            <small className={styles.errMsg}>
+              The email or password entered did not match
+            </small>
+          ) : (
+            ''
+          )}
           <button type='submit'>Login</button>
         </form>
         <span>

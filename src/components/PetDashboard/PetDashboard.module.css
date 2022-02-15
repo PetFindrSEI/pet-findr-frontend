@@ -15,6 +15,7 @@
   margin: 0.5em;
   width: auto;
   border: 1px solid grey;
+  border: 1px solid red;
 }
 
 .petImage {
@@ -26,8 +27,7 @@
 
 .petImage img {
   display: block;
-  border-top-left-radius: 5%;
-  border-top-right-radius: 5%;
+  border-radius: 10px 10px 0 0;
   width: 249px;
   height: 100%;
   align-self: baseline;

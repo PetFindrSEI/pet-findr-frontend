@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './AddPets.module.css';
 import { useNavigate } from 'react-router-dom';
 import { FiEdit } from 'react-icons/fi';
 import { MdPhotoLibrary } from 'react-icons/md';
+import API_URL from '../../apiUrl';
+import { FaPaw } from 'react-icons/fa';
 
-function AddPets(props) {
+
+function AddPets({ loggedIn }) {
   const navigate = useNavigate();
   // newPet model that will be submitted to the API
   const [newPet, setNewPet] = useState({
@@ -18,52 +21,65 @@ function AddPets(props) {
     microchip: '',
     location: '',
     reported_time: '',
-    photo: '',
+    photo: null,
     phone_number: '',
   });
 
   // Report New Pet
-  const reportNewPet = () => {
-    fetch(`https://petfindr-api.herokuapp.com/pets/`, {
-      method: 'POST',
-      body: JSON.stringify(newPet),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        console.log(res);
-        navigate('/');
+  const reportNewPet = async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+
+    try {
+      const response = await fetch(API_URL + 'pets/', {
+        method: 'POST',
+        body: data,
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`,
+        },
       });
+      console.log(response);
+      if (response.status === 201) {
+        const data = await response.json();
+        navigate(`/pets/${data.id}`);
+        console.log('Success', response);
+      }
+    } catch (error) {
+      console.log('Error', error);
+    }
   };
 
   // Handle Change
   const handleChange = (e) => {
     setNewPet({ ...newPet, [e.target.id]: e.target.value });
+    console.log(newPet);
   };
-  // Handle Submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    reportNewPet();
-  };
+
+  useEffect(() => {
+    if (!loggedIn) {
+      navigate('/login');
+    }
+  }, []);
 
   return (
     <div className={styles.reportContainer}>
       <h2>Report a Pet</h2>
-      <form onSubmit={handleSubmit} className={styles.reportForm}>
+      <form
+        onSubmit={reportNewPet}
+        className={styles.reportForm}
+        encType='multipart/form-data'>
         <label htmlFor='name'>
           <FiEdit className={styles.editIcon} />
         </label>
         <input
           type='text'
           id='name'
+          name='name'
           onChange={handleChange}
           value={newPet.name}
           placeholder='Enter Name'
           className={styles.name}
+          autoFocus
         />
 
         <div className={styles.photoContainer}>
@@ -73,8 +89,8 @@ function AddPets(props) {
           <input
             type='file'
             id='photo'
-            onChange={handleChange}
-            value={newPet.photo}
+            name='photo'
+            accept='image/*'
             className={styles.photo}
           />
         </div>
@@ -85,6 +101,7 @@ function AddPets(props) {
             <select
               type='text'
               id='status'
+              name='status'
               onChange={handleChange}
               value={newPet.status}>
               <option value='Lost'>Lost</option>
@@ -96,6 +113,7 @@ function AddPets(props) {
             <select
               type='text'
               id='type'
+              name='type'
               onChange={handleChange}
               value={newPet.type}>
               <option value='Dog'>Dog</option>
@@ -108,6 +126,7 @@ function AddPets(props) {
             <select
               type='text'
               id='gender'
+              name='gender'
               onChange={handleChange}
               value={newPet.gender}>
               <option value='M'>Male</option>
@@ -120,6 +139,7 @@ function AddPets(props) {
             <select
               type='text'
               id='size'
+              name='size'
               onChange={handleChange}
               value={newPet.size}>
               <option value='XS'>Extra Smol</option>
@@ -134,6 +154,7 @@ function AddPets(props) {
             <select
               type='text'
               id='microchip'
+              name='microchip'
               onChange={handleChange}
               value={newPet.microchip}>
               <option value='Y'>Yes</option>
@@ -147,6 +168,7 @@ function AddPets(props) {
         <input
           type='text'
           id='color'
+          name='color'
           onChange={handleChange}
           value={newPet.color}
         />
@@ -154,6 +176,7 @@ function AddPets(props) {
         <textarea
           type='text'
           id='description'
+          name='description'
           onChange={handleChange}
           value={newPet.description}
           rows='15'
@@ -163,6 +186,7 @@ function AddPets(props) {
         <input
           type='text'
           id='location'
+          name='location'
           onChange={handleChange}
           value={newPet.location}
         />
@@ -170,23 +194,23 @@ function AddPets(props) {
         <input
           type='date'
           id='reported_time'
+          name='reported_time'
           onChange={handleChange}
           value={newPet.reported_time}
         />
 
-        <label htmlFor='phone_number'>
-          Contact Number: <small>Format: 123-456-7890</small>
-        </label>
+        <label htmlFor='phone_number'>Contact Number:</label>
         <input
           type='tel'
           id='phone_number'
+          name='phone_number'
           onChange={handleChange}
           value={newPet.phone_number}
           pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+          placeholder='xxx-xxx-xxxx'
         />
-        <button type='submit' className={styles.submitBtn}>
-          Report Pet
-        </button>
+        <small>Format: 123-456-7890</small>
+        <input type='submit' value='Report Pet' className={styles.submitBtn} />
       </form>
     </div>
   );

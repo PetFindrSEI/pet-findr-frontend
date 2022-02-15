@@ -40,7 +40,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
         <div className={styles.buttonsArea}>
           <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 0.975 }}>
             {userInfo ? (
-              <Link to='/'>{userInfo.username}</Link>
+              <Link to='/user-profile'>{userInfo.username}</Link>
             ) : (
               <Link to='/login'>Login</Link>
             )}

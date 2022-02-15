@@ -3,6 +3,7 @@ import 'normalize.css';
 import './App.css';
 import { FaPaw } from 'react-icons/fa';
 // Dependencies
+import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import API_URL from './apiUrl';
 // Components
@@ -13,10 +14,9 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ReportPet from './components/ReportPet/ReportPet';
 import AddPets from './components/AddPets/AddPets';
-import './App.css';
 import PetDashboard from './components/PetDashboard/PetDashboard';
 import PetDetails from './components/PetDetails/PetDetails';
-import { useState, useEffect } from 'react';
+import UserProfile from './components/UserProfile/UserProfile';
 
 function App() {
   const [petStatus, setPetStatus] = useState({
@@ -72,7 +72,7 @@ function App() {
         setUserInfo(null);
         setLoggedIn(false);
         localStorage.clear();
-        // navigate('/login');
+        navigate('/');
       }
     } catch (error) {}
     return;
@@ -111,7 +111,7 @@ function App() {
             element={<Login handleSetLoggedIn={handleSetLoggedIn} />}
           />
           <Route path='/register' element={<Register />} />
-          <Route path='/report-pet' element={<AddPets />} />
+          <Route path='/report-pet' element={<AddPets loggedIn={loggedIn} />} />
           <Route
             path='/dashboard'
             element={<PetDashboard petStatus={petStatus} />}
@@ -121,6 +121,16 @@ function App() {
             element={<PetDashboard petStatus={petStatus} />}
           />
           <Route path='/pets/:id' element={<PetDetails />}></Route>
+          <Route
+            path='/user-profile'
+            element={
+              <UserProfile
+                loggedIn={loggedIn}
+                handleLogout={handleLogout}
+                userInfo={userInfo}
+              />
+            }
+          />
         </Routes>
       </main>
       <footer>

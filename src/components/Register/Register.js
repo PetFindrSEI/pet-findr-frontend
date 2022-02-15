@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Register.module.css';
 import axios from 'axios';
+import API_URL from '../../apiUrl';
 
 function Register(props) {
   const navigate = useNavigate();
@@ -11,28 +12,46 @@ function Register(props) {
     password: '',
     re_password: '',
   });
+  const [errMsg, setErrMsg] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const passwordMatch = 'The passwords do not match';
 
-  const createNewUser = () => {
-    axios
-      .post(`https://petfindr-api.herokuapp.com/users/`, newUser)
-      .then((res) => {
-        console.log(res);
-        navigate('/login');
-      })
-      .catch((err) => {
-        console.log(err);
+  const createNewUser = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(API_URL + 'users/', {
+        method: 'POST',
+        body: JSON.stringify(newUser),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
+      if (response.status === 201) {
+        setSuccess(true);
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      }
+      if (response.status !== 201) {
+        setErrMsg(true);
+      }
+    } catch (error) {
+      setErrMsg(true);
+    }
+  };
+
+  // Handle Password match
+  const handlePassword = () => {
+    if (newUser.password !== newUser.re_password) {
+      setErrMsg(true);
+    } else {
+      setErrMsg(false);
+    }
   };
 
   // Handle Change
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.id]: e.target.value });
-  };
-
-  // Handle Submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createNewUser();
   };
 
   return (
@@ -45,7 +64,7 @@ function Register(props) {
       </svg>
       <div className={styles.registerBox}>
         <h2>Register a New Account</h2>
-        <form className={styles.registerForm} onSubmit={handleSubmit}>
+        <form className={styles.registerForm} onSubmit={createNewUser}>
           <label htmlFor='username'>Username</label>
           <input
             type='text'
@@ -82,10 +101,16 @@ function Register(props) {
             autoComplete='off'
             value={newUser.re_password}
             onChange={handleChange}
+            onBlur={handlePassword}
           />
-
+          {errMsg ? <p>{passwordMatch}</p> : null}
           <button>Register</button>
         </form>
+        {success ? (
+          <p>Successfully logged in! Redirecting you to login.</p>
+        ) : (
+          ''
+        )}
         <span>
           Already have an account? <Link to='/login'>Login here.</Link>
         </span>
