@@ -3,8 +3,8 @@ import 'normalize.css';
 import './App.css';
 import { FaPaw } from 'react-icons/fa';
 // Dependencies
-import { Routes, Route, Link } from 'react-router-dom';
-import { UserProvider } from './context/UserContext';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import API_URL from './apiUrl';
 // Components
 import Navigation from './components/Navigation/Navigation';
 import Home from './components/Home/Home';
@@ -16,13 +16,74 @@ import AddPets from './components/AddPets/AddPets';
 import './App.css';
 import PetDashboard from './components/PetDashboard/PetDashboard';
 import PetDetails from './components/PetDetails/PetDetails';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [petStatus, setPetStatus] = useState({
     status: '',
   });
-  console.log(petStatus);
+
+  const navigate = useNavigate();
+
+  const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem('token') ? true : false
+  );
+
+  const [userInfo, setUserInfo] = useState(null);
+
+  const handleSetLoggedIn = (token) => {
+    localStorage.setItem('token', token);
+    setLoggedIn(true);
+    return;
+  };
+
+  const getUserInfo = async () => {
+    try {
+      const response = await fetch(API_URL + 'users/me/', {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('token')}`,
+        },
+      });
+      console.log(response);
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log(data);
+        setUserInfo(data);
+      } else {
+        setUserInfo(null);
+        setLoggedIn(false);
+        localStorage.clear();
+      }
+    } catch (error) {}
+    return;
+  };
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(API_URL + 'token/logout/', {
+        method: 'POST',
+        body: JSON.stringify(localStorage.getItem('token')),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem('token')}`,
+        },
+      });
+      if (response.status === 204) {
+        setUserInfo(null);
+        setLoggedIn(false);
+        localStorage.clear();
+        // navigate('/login');
+      }
+    } catch (error) {}
+    return;
+  };
+
+  useEffect(() => {
+    if (loggedIn) {
+      getUserInfo();
+      console.log(userInfo);
+    }
+  }, [loggedIn]);
 
   return (
     <div className='App'>
@@ -32,32 +93,39 @@ function App() {
       <div className='paw-two'>
         <FaPaw />
       </div>
-      <UserProvider>
-        <header>
-          <Navigation setPetStatus={setPetStatus} />
-        </header>
-        <main>
-          <ReportPet />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/report-pet' element={<AddPets />} />
-            <Route
-              path='/dashboard'
-              element={<PetDashboard petStatus={petStatus} />}
-            />
-            <Route
-              path='/dashboard/:status'
-              element={<PetDashboard petStatus={petStatus} />}
-            />
-            <Route path='/pets/:id' element={<PetDetails />}></Route>
-          </Routes>
-        </main>
-        <footer>
-          <Footer setPetStatus={setPetStatus}/>
-        </footer>
-      </UserProvider>
+
+      <header>
+        <Navigation
+          setPetStatus={setPetStatus}
+          loggedIn={loggedIn}
+          handleLogout={handleLogout}
+          userInfo={userInfo}
+        />
+      </header>
+      <main>
+        <ReportPet />
+        <Routes>
+          <Route path='/' element={<Home loggedIn={loggedIn} />} />
+          <Route
+            path='/login'
+            element={<Login handleSetLoggedIn={handleSetLoggedIn} />}
+          />
+          <Route path='/register' element={<Register />} />
+          <Route path='/report-pet' element={<AddPets />} />
+          <Route
+            path='/dashboard'
+            element={<PetDashboard petStatus={petStatus} />}
+          />
+          <Route
+            path='/dashboard/:status'
+            element={<PetDashboard petStatus={petStatus} />}
+          />
+          <Route path='/pets/:id' element={<PetDetails />}></Route>
+        </Routes>
+      </main>
+      <footer>
+        <Footer setPetStatus={setPetStatus} />
+      </footer>
     </div>
   );
 }

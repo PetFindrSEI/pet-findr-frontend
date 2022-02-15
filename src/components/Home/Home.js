@@ -6,7 +6,7 @@ import PetSlider from '../PetSlider/PetSlider';
 import foundPetImage from '../../assets/foundPetImage.jpg';
 import lostPetImage from '../../assets/lostPetImage.jpg';
 
-function Home(props) {
+function Home({ loggedIn }) {
   const navigate = useNavigate();
   return (
     <div className={styles.homeContainer}>
@@ -15,18 +15,32 @@ function Home(props) {
           <h2>PetFindr</h2>
           <h3>Lost or found, we can help your best friend.</h3>
         </div>
-        <div className={styles.heroInfoBox}>
-          <h4>Login to start reuniting the lost animals in your area</h4>
-          <motion.button
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ backgroundColor: '#854ad0', color: '#fff' }}
-            whileTap={{ backgroundColor: '#fff' }}
-            onClick={() => navigate('/login')}>
-            Login
-          </motion.button>
-          <Link to='/register'>Register</Link>
-        </div>
+        {loggedIn ? (
+          <div className={styles.heroInfoBox}>
+            <h4>Search for lost pups in your area</h4>
+            <motion.button
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              whileHover={{ backgroundColor: '#854ad0', color: '#fff' }}
+              whileTap={{ backgroundColor: '#fff' }}
+              onClick={() => navigate('/dashboard')}>
+              Dashboard
+            </motion.button>
+          </div>
+        ) : (
+          <div className={styles.heroInfoBox}>
+            <h4>Login to start reuniting the lost animals in your area</h4>
+            <motion.button
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              whileHover={{ backgroundColor: '#854ad0', color: '#fff' }}
+              whileTap={{ backgroundColor: '#fff' }}
+              onClick={() => navigate('/login')}>
+              Login
+            </motion.button>
+            <Link to='/register'>Register</Link>
+          </div>
+        )}
       </section>
       <section>
         <PetSlider />

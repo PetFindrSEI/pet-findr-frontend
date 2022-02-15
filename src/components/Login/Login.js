@@ -2,39 +2,38 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../../apiUrl';
 
-function Login(props) {
-  const navigate = useNavigate()
+function Login({ handleSetLoggedIn }) {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
-    email: 'test@test.com',
-    password: 'petfindr',
+    email: '',
+    password: '',
   });
+  const [errMsg, setErrMsg] = useState(false);
 
-    const createNewUser = () => {
-      axios
-        .post(`https://petfindr-api.herokuapp.com/users/`, user)
-        .then((res) => {
-          res.json();
-        })
-        .then((res) => {
-          console.log(res);
-          navigate('/login');
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+  const loginUser = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(API_URL + 'token/login/', {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.status === 200) {
+        const data = await response.json();
+        handleSetLoggedIn(data.auth_token);
+        navigate('/');
+      }
+    } catch (error) {}
+  };
 
-    // Handle Change
-    const handleChange = (e) => {
-      setUser({ ...user, [e.target.id]: e.target.value });
-    };
-
-    // Handle Submit
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      createNewUser();
-    };
+  // Handle Change
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.id]: e.target.value });
+  };
 
   return (
     <div className={styles.loginContainer}>
@@ -46,15 +45,15 @@ function Login(props) {
       </svg>
       <div className={styles.loginBox}>
         <h2>Welcome Back!</h2>
-        <form className={styles.loginForm}>
+        <form className={styles.loginForm} onSubmit={loginUser}>
           <label htmlFor='email'>Email</label>
           <input
             type='text'
             id='email'
             placeholder='Email'
             autoComplete='off'
-            // value={registered.username}
-            // onChange={handleChange}
+            value={user.email}
+            onChange={handleChange}
           />
           <label htmlFor='password'>Password</label>
           <input
@@ -62,11 +61,10 @@ function Login(props) {
             id='password'
             placeholder='Password'
             autoComplete='off'
-            // value={registered.username}
-            // onChange={handleChange}
+            value={user.password}
+            onChange={handleChange}
           />
-
-          <button>Login</button>
+          <button type='submit'>Login</button>
         </form>
         <span>
           Don't have an account? <Link to='/register'>Register here.</Link>
