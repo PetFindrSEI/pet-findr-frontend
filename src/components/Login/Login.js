@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Login.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login(props) {
+  const navigate = useNavigate()
+  const [user, setUser] = useState({
+    email: 'test@test.com',
+    password: 'petfindr',
+  });
+
+    const createNewUser = () => {
+      axios
+        .post(`https://petfindr-api.herokuapp.com/users/`, user)
+        .then((res) => {
+          res.json();
+        })
+        .then((res) => {
+          console.log(res);
+          navigate('/login');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    // Handle Change
+    const handleChange = (e) => {
+      setUser({ ...user, [e.target.id]: e.target.value });
+    };
+
+    // Handle Submit
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      createNewUser();
+    };
+
   return (
     <div className={styles.loginContainer}>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'>

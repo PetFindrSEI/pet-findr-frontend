@@ -9,10 +9,10 @@
 }
 /* Report H2 */
 .reportContainer h2 {
+  font-size: 3rem;
   font-weight: 600;
-  font-size: 2rem;
   margin: 0 auto;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 /* Report Form */
 .reportForm {
@@ -98,13 +98,13 @@
 }
 /* TextArea */
 .reportForm textarea {
-    width: 100%;
-    max-width: 500px;
+  width: 100%;
+  max-width: 500px;
   margin-bottom: 1rem;
 }
 
 /* Submit Button */
 .submitBtn {
-    width: fit-content;
-    padding: 0.3rem;
+  width: fit-content;
+  padding: 0.3rem;
 }

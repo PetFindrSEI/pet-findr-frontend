@@ -1,9 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Register.module.css';
+import axios from 'axios';
 
 function Register(props) {
-  
+  const navigate = useNavigate();
+  const [newUser, setNewUser] = useState({
+    username: '',
+    email: '',
+    password: '',
+    re_password: '',
+  });
+
+  const createNewUser = () => {
+    axios
+      .post(`https://petfindr-api.herokuapp.com/users/`, newUser)
+      .then((res) => {
+        console.log(res);
+        navigate('/login');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // Handle Change
+  const handleChange = (e) => {
+    setNewUser({ ...newUser, [e.target.id]: e.target.value });
+  };
+
+  // Handle Submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createNewUser();
+  };
+
   return (
     <div className={styles.registerContainer}>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'>
@@ -14,15 +45,15 @@ function Register(props) {
       </svg>
       <div className={styles.registerBox}>
         <h2>Register a New Account</h2>
-        <form className={styles.registerForm}>
+        <form className={styles.registerForm} onSubmit={handleSubmit}>
           <label htmlFor='username'>Username</label>
           <input
             type='text'
             id='username'
             placeholder='Username'
             autoComplete='off'
-            // value={registered.username}
-            // onChange={handleChange}
+            value={newUser.username}
+            onChange={handleChange}
           />
 
           <label htmlFor='email'>Email</label>
@@ -31,8 +62,8 @@ function Register(props) {
             id='email'
             placeholder='Email'
             autoComplete='off'
-            // value={registered.username}
-            // onChange={handleChange}
+            value={newUser.email}
+            onChange={handleChange}
           />
           <label htmlFor='password'>Password</label>
           <input
@@ -40,8 +71,17 @@ function Register(props) {
             id='password'
             placeholder='Password'
             autoComplete='off'
-            // value={registered.username}
-            // onChange={handleChange}
+            value={newUser.password}
+            onChange={handleChange}
+          />
+          <label htmlFor='re_password'>Confirm Password</label>
+          <input
+            type='password'
+            id='re_password'
+            placeholder='Password'
+            autoComplete='off'
+            value={newUser.re_password}
+            onChange={handleChange}
           />
 
           <button>Register</button>

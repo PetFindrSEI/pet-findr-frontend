@@ -27,9 +27,9 @@
 .heroSection h2 {
   color: white;
   font-size: 4rem;
+  font-weight: 600;
   margin: 0 auto;
   transition: all 0.2s ease;
-  font-weight: 600;
 }
 .heroSection h3 {
   color: white;

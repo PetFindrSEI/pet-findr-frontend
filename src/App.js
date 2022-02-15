@@ -55,7 +55,7 @@ function App() {
           </Routes>
         </main>
         <footer>
-          <Footer />
+          <Footer setPetStatus={setPetStatus}/>
         </footer>
       </UserProvider>
     </div>

@@ -62,7 +62,7 @@ function AddPets(props) {
           id='name'
           onChange={handleChange}
           value={newPet.name}
-          placeholder='Name'
+          placeholder='Enter Name'
           className={styles.name}
         />
 
@@ -184,9 +184,9 @@ function AddPets(props) {
           value={newPet.phone_number}
           pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
         />
-        <button
-          type='submit'
-          className={styles.submitBtn}>Report Pet</button>
+        <button type='submit' className={styles.submitBtn}>
+          Report Pet
+        </button>
       </form>
     </div>
   );
