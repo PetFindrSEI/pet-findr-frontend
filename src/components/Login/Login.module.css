@@ -56,15 +56,15 @@
   width: fit-content;
   padding: 0.4rem 1.5rem;
   margin: 1rem auto;
-  border: 1px solid #13b279;
+  border: 1px solid #44CB82;
   background-color: white;
   border-radius: 5px;
   cursor: pointer;
-  color: #13b279;
+  color: #44CB82;
   transition: all 0.2s ease;
 }
 .loginForm button:hover {
-  background-color: #13b279;
+  background-color: #44CB82;
   color: white;
 }
 

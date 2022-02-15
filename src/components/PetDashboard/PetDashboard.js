@@ -43,7 +43,7 @@ function PetDashboard({ petStatus }) {
       <section className={styles.petsContainer}>
         {filtered.map((pet) => (
           <div className={styles.petCard} key={pet.id}>
-            <Link to={`/dashboard/${pet.id}`} className={styles.link}>
+            <Link to={`/pets/${pet.id}`} className={styles.link}>
               <div className={styles.petImage}>
                 <img src={pet.photo} alt={pet.name} />
               </div>
