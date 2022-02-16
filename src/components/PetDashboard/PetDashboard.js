@@ -1,38 +1,40 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './PetDashboard.module.css';
 import { Link } from 'react-router-dom';
 import Filter from '../Filter/Filter';
 
-function PetDashboard({ petStatus }) {
-
-
-  const [pets, setPets] = useState([]);
-  const [filtered, setFiltered] = useState([]);
-
-  const url = `https://petfindr-api.herokuapp.com/pets/`;
+function PetDashboard({
+  petStatus,
+  setPetStatus,
+  pets,
+  filtered,
+  setFiltered,
+}) {
+  const filterResults = () => {
+    // if (petStatus.status === 'Found') {
+    //   const results = pets.filter((item) => item.status.includes('Found'));
+    //   setFiltered(results);
+    // }
+    // if (petStatus.status === 'Lost') {
+    //   const results = pets.filter((item) => item.status.includes('Lost'));
+    //   setFiltered(results);
+    // }
+    // return;
+    const results = pets.filter((item) => {
+      for (let key in petStatus) {
+        if (item[key] !== petStatus[key]) {
+          return false;
+        }
+      }
+      return true;
+    });
+    setFiltered(results);
+  };
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((json) => {
-        setPets(json);
-
-        if (petStatus.status === 'Found') {
-          const filteredFound = json.filter((foundPet) =>
-            foundPet.status.includes('Found')
-          );
-          setFiltered(filteredFound);
-        } else if (petStatus.status === 'Lost') {
-          const filteredFound = json.filter((lostPet) =>
-            lostPet.status.includes('Lost')
-          );
-          setFiltered(filteredFound);
-        } else if (petStatus.status === '') {
-          setFiltered(json);
-        }
-      })
-      .catch(console.error);
-  }, [url, petStatus.status]);
+    filterResults();
+    console.log(petStatus);
+  }, [petStatus]);
 
   if (!pets) {
     return <p>Loading pets looking for their home...</p>;
@@ -40,7 +42,7 @@ function PetDashboard({ petStatus }) {
 
   return (
     <div>
-      <Filter />
+      <Filter petStatus={petStatus} setPetStatus={setPetStatus} />
       <hr />
       <section className={styles.petsContainer}>
         {filtered.map((pet) => (

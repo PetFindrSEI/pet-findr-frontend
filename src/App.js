@@ -20,9 +20,24 @@ import UserProfile from './components/UserProfile/UserProfile';
 import HowItWorks from './components/HowItWorks/HowItWorks'
 
 function App() {
-  const [petStatus, setPetStatus] = useState({
-    status: '',
-  });
+  const [pets, setPets] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+
+  const url = `https://petfindr-api.herokuapp.com/pets/`;
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((json) => {
+        setPets(json);
+        setFiltered(json);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  
+
+  const [petStatus, setPetStatus] = useState({});
 
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(
@@ -117,7 +132,10 @@ function App() {
         <ReportPet locationReportPet={locationReportPet} />
 
         <Routes>
-          <Route path='/' element={<Home loggedIn={loggedIn} />} />
+          <Route
+            path='/'
+            element={<Home loggedIn={loggedIn} setPetStatus={setPetStatus} />}
+          />
           <Route
             path='/login'
             element={<Login handleSetLoggedIn={handleSetLoggedIn} />}
@@ -126,12 +144,20 @@ function App() {
           <Route path='/report-pet' element={<AddPets loggedIn={loggedIn} />} />
           <Route
             path='/dashboard'
-            element={<PetDashboard petStatus={petStatus} />}
+            element={
+              <PetDashboard
+                petStatus={petStatus}
+                setPetStatus={setPetStatus}
+                pets={pets}
+                filtered={filtered}
+                setFiltered={setFiltered}
+              />
+            }
           />
-          <Route
+          {/* <Route
             path='/dashboard/:status'
             element={<PetDashboard petStatus={petStatus} />}
-          />
+          /> */}
           <Route path='/pets/:id' element={<PetDetails />}></Route>
           <Route
             path='/user-profile'

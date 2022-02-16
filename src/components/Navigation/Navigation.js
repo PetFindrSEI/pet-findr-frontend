@@ -89,7 +89,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
         {/* Found Pets Link */}
         <motion.li whileHover={{ scale: 1.05 }}>
           <Link
-            to={`/dashboard/found`}
+            to={`/dashboard`}
             onClick={() => {
               setPetStatus({ status: 'Found' });
             }}>
@@ -102,7 +102,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
         {/* Lost Pets Link */}
         <motion.li whileHover={{ scale: 1.05 }}>
           <Link
-            to={`/dashboard/lost`}
+            to={`/dashboard`}
             onClick={() => {
               setPetStatus({ status: 'Lost' });
             }}>
