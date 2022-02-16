@@ -103,11 +103,13 @@ function Register(props) {
             onChange={handleChange}
             onBlur={handlePassword}
           />
-          {errMsg ? <p>{passwordMatch}</p> : null}
+          {errMsg ? (
+            <p className={styles.passwordMatch}>{passwordMatch}</p>
+          ) : null}
           <button>Register</button>
         </form>
         {success ? (
-          <p>Successfully logged in! Redirecting you to login.</p>
+          <p>Successfully registered! Redirecting you to login.</p>
         ) : (
           ''
         )}
