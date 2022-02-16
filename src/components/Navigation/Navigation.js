@@ -114,7 +114,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
         <span></span>
         {/* How It Works Link */}
         <motion.li whileHover={{ scale: 1.05 }}>
-          <Link to='/'>
+          <Link to='/howitworks'>
             <FiHelpCircle className={styles.icon} />
             How it Works?
           </Link>

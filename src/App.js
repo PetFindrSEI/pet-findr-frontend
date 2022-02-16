@@ -17,6 +17,7 @@ import AddPets from './components/AddPets/AddPets';
 import PetDashboard from './components/PetDashboard/PetDashboard';
 import PetDetails from './components/PetDetails/PetDetails';
 import UserProfile from './components/UserProfile/UserProfile';
+import HowItWorks from './components/HowItWorks/HowItWorks'
 
 function App() {
   const [petStatus, setPetStatus] = useState({
@@ -142,6 +143,7 @@ function App() {
               />
             }
           />
+          <Route path='/howitworks' element={<HowItWorks/>}></Route>
         </Routes>
       </main>
       <footer>
