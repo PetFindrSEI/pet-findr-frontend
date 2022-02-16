@@ -1,6 +1,38 @@
 /* Filter Container */
 .filterContainer {
-    margin: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgb(212, 212, 212);
+  margin: 1rem auto;
+  margin-top: 0;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgb(212, 212, 212);
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(20px);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.filterContainer h3 {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.filterContainer h3 .icon {
+  margin-left: 1rem;
+}
+
+.filterContainer div {
+  margin-left: 0.8rem;
+}
+
+.filterContainer p {
+  margin-left: -0.8rem;
+}
+
+.filterContainer button {
+  margin: 0.5rem -0.8rem;
+}
+
+.clearFilters {
+  margin-top: 1rem;
+}
+.clearFilters button {
+  background-color: #854ad0;
+  color: #fff;
 }

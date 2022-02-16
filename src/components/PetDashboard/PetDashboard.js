@@ -11,15 +11,6 @@ function PetDashboard({
   setFiltered,
 }) {
   const filterResults = () => {
-    // if (petStatus.status === 'Found') {
-    //   const results = pets.filter((item) => item.status.includes('Found'));
-    //   setFiltered(results);
-    // }
-    // if (petStatus.status === 'Lost') {
-    //   const results = pets.filter((item) => item.status.includes('Lost'));
-    //   setFiltered(results);
-    // }
-    // return;
     const results = pets.filter((item) => {
       for (let key in petStatus) {
         if (item[key] !== petStatus[key]) {
@@ -42,8 +33,10 @@ function PetDashboard({
 
   return (
     <div>
-      <Filter petStatus={petStatus} setPetStatus={setPetStatus} />
-      <hr />
+      <Filter
+        petStatus={petStatus}
+        setPetStatus={setPetStatus}
+      />
       <section className={styles.petsContainer}>
         {filtered.map((pet) => (
           <div className={styles.petCard} key={pet.id}>
@@ -54,6 +47,12 @@ function PetDashboard({
               <div className={styles.cardTitle}>
                 <h3 className={styles.name}>{pet.name}</h3>
                 <h3 className={styles.status}>{pet.status}</h3>
+              </div>
+              <div>
+                <p>{pet.gender}</p>
+                <p>{pet.type}</p>
+                <p>{pet.location}</p>
+                <p>{pet.reported_time}</p>
               </div>
             </Link>
           </div>

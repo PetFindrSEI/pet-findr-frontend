@@ -17,7 +17,7 @@ import AddPets from './components/AddPets/AddPets';
 import PetDashboard from './components/PetDashboard/PetDashboard';
 import PetDetails from './components/PetDetails/PetDetails';
 import UserProfile from './components/UserProfile/UserProfile';
-import HowItWorks from './components/HowItWorks/HowItWorks'
+import HowItWorks from './components/HowItWorks/HowItWorks';
 
 function App() {
   const [pets, setPets] = useState([]);
@@ -34,8 +34,6 @@ function App() {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  
 
   const [petStatus, setPetStatus] = useState({});
 
@@ -130,7 +128,6 @@ function App() {
       </header>
       <main>
         <ReportPet locationReportPet={locationReportPet} />
-
         <Routes>
           <Route
             path='/'
@@ -154,10 +151,6 @@ function App() {
               />
             }
           />
-          {/* <Route
-            path='/dashboard/:status'
-            element={<PetDashboard petStatus={petStatus} />}
-          /> */}
           <Route path='/pets/:id' element={<PetDetails />}></Route>
           <Route
             path='/user-profile'
@@ -169,7 +162,7 @@ function App() {
               />
             }
           />
-          <Route path='/howitworks' element={<HowItWorks/>}></Route>
+          <Route path='/howitworks' element={<HowItWorks />}></Route>
         </Routes>
       </main>
       <footer>

@@ -78,7 +78,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
           <Link
             to='/dashboard'
             onClick={() => {
-              setPetStatus({ status: '' });
+              setPetStatus({});
             }}>
             <GoDashboard className={styles.icon} />
             Dashboard
