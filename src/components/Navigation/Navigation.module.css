@@ -113,3 +113,10 @@
   text-decoration: none;
   color: black;
 }
+
+/* Paw Period */
+.pawPeriod {
+  font-size: 0.5rem;
+  transform: rotate(20deg);
+  color: black;
+}

@@ -4,7 +4,7 @@ import './App.css';
 import { FaPaw } from 'react-icons/fa';
 // Dependencies
 import { useState, useEffect } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import API_URL from './apiUrl';
 // Components
 import Navigation from './components/Navigation/Navigation';
@@ -24,19 +24,30 @@ function App() {
   });
 
   const navigate = useNavigate();
-
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem('token') ? true : false
   );
-
   const [userInfo, setUserInfo] = useState(null);
 
+  // Setup useLocation for Report Pet Link with a Ternary
+  const location = useLocation();
+  const [locationReportPet, setLocationReportPet] = useState(false);
+  useEffect(() => {
+    if (location.pathname === '/report-pet') {
+      setLocationReportPet(true);
+    } else {
+      setLocationReportPet(false);
+    }
+  }, [location.pathname]);
+
+  // Handle the logged in state
   const handleSetLoggedIn = (token) => {
     localStorage.setItem('token', token);
     setLoggedIn(true);
     return;
   };
 
+  // Get the User Info
   const getUserInfo = async () => {
     try {
       const response = await fetch(API_URL + 'users/me/', {
@@ -44,10 +55,8 @@ function App() {
           Authorization: `Token ${localStorage.getItem('token')}`,
         },
       });
-      console.log(response);
       if (response.status === 200) {
         const data = await response.json();
-        console.log(data);
         setUserInfo(data);
       } else {
         setUserInfo(null);
@@ -58,6 +67,7 @@ function App() {
     return;
   };
 
+  // Handle the Logout Functionality
   const handleLogout = async () => {
     try {
       const response = await fetch(API_URL + 'token/logout/', {
@@ -78,10 +88,10 @@ function App() {
     return;
   };
 
+  // If the user is logged in, run getUserInfo();
   useEffect(() => {
     if (loggedIn) {
       getUserInfo();
-      console.log(userInfo);
     }
   }, [loggedIn]);
 
@@ -103,7 +113,8 @@ function App() {
         />
       </header>
       <main>
-        <ReportPet />
+        <ReportPet locationReportPet={locationReportPet} />
+
         <Routes>
           <Route path='/' element={<Home loggedIn={loggedIn} />} />
           <Route

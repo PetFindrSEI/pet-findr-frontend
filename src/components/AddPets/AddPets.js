@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import styles from './AddPets.module.css';
 import { useNavigate } from 'react-router-dom';
-import { FiEdit } from 'react-icons/fi';
-import { MdPhotoLibrary } from 'react-icons/md';
-import API_URL from '../../apiUrl';
-import { FaPaw } from 'react-icons/fa';
+import styles from './AddPets.module.css';
 import { motion } from 'framer-motion';
+import API_URL from '../../apiUrl';
 
 function AddPets({ loggedIn }) {
+  const [errMsg, setErrMsg] = useState(false);
+  const [notFilled, setNotFilled] = useState(false);
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   // newPet model that will be submitted to the API
   const [newPet, setNewPet] = useState({
@@ -29,7 +29,6 @@ function AddPets({ loggedIn }) {
   const reportNewPet = async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-
     try {
       const response = await fetch(API_URL + 'pets/', {
         method: 'POST',
@@ -38,21 +37,24 @@ function AddPets({ loggedIn }) {
           Authorization: `Token ${localStorage.getItem('token')}`,
         },
       });
-      console.log(response);
       if (response.status === 201) {
         const data = await response.json();
-        navigate(`/pets/${data.id}`);
-        console.log('Success', response);
+        setSuccess(true);
+        setTimeout(() => {
+          navigate(`/pets/${data.id}`);
+        }, 2000);
+      }
+      if (response.status !== 201) {
+        setNotFilled(true);
       }
     } catch (error) {
-      console.log('Error', error);
+      setErrMsg(error);
     }
   };
 
   // Handle Change
   const handleChange = (e) => {
     setNewPet({ ...newPet, [e.target.id]: e.target.value });
-    console.log(newPet);
   };
 
   useEffect(() => {
@@ -61,10 +63,16 @@ function AddPets({ loggedIn }) {
     }
   }, []);
 
+  // Framer Motion Variants
+  const successful = {
+    start: { y: '2rem', backgroundColor: '#13B279', opacity: 0 },
+    end: { y: 0, backgroundColor: '#13B279', opacity: 1 },
+  };
+
   return (
     <div className={styles.reportContainer}>
       <div className={styles.reportCard}>
-        <h2>Report a Pet</h2>
+        <h2>Report a Pet {errMsg}</h2>
         <form
           onSubmit={reportNewPet}
           className={styles.reportForm}
@@ -79,6 +87,7 @@ function AddPets({ loggedIn }) {
               value={newPet.name}
               className={styles.name}
               autoFocus
+              autoComplete='off'
             />
           </div>
 
@@ -163,6 +172,7 @@ function AddPets({ loggedIn }) {
               name='color'
               onChange={handleChange}
               value={newPet.color}
+              autoComplete='off'
             />
           </div>
 
@@ -187,6 +197,7 @@ function AddPets({ loggedIn }) {
               name='location'
               onChange={handleChange}
               value={newPet.location}
+              autoComplete='off'
             />
           </div>
 
@@ -213,6 +224,7 @@ function AddPets({ loggedIn }) {
               value={newPet.phone_number}
               pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
               placeholder='xxx-xxx-xxxx'
+              autoComplete='off'
             />
           </div>
 
@@ -226,12 +238,32 @@ function AddPets({ loggedIn }) {
               className={styles.photo}
             />
           </div>
-          <motion.input
-            type='submit'
-            value='Report Pet'
-            whileHover={{ backgroundColor: '#bb6b32' }}
-            whileTap={{ backgroundColor: '#d37d40' }}
-          />
+
+          {notFilled ? (
+            <p className={styles.notFilled}>
+              Make sure all fields are filled out before submitting.
+            </p>
+          ) : (
+            ''
+          )}
+
+          {success ? (
+            <motion.input
+              type='submit'
+              value='Pet Reported!'
+              variants={successful}
+              initial='start'
+              animate='end'
+              layout
+            />
+          ) : (
+            <motion.input
+              type='submit'
+              value='Report Pet'
+              whileHover={{ backgroundColor: '#D29568' }}
+              whileTap={{ backgroundColor: '#bb6b32' }}
+            />
+          )}
         </form>
       </div>
     </div>

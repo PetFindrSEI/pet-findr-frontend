@@ -1,8 +1,6 @@
 import styles from './Navigation.module.css';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MdClose } from 'react-icons/md';
-import { FiMenu } from 'react-icons/fi';
 // Hamburger Icon
 import { Divide as Hamburger } from 'hamburger-react';
 // Menu Icons
@@ -13,6 +11,8 @@ import { FiHelpCircle } from 'react-icons/fi';
 import { GoReport } from 'react-icons/go';
 import { FiLogOut } from 'react-icons/fi';
 import { GoDashboard } from 'react-icons/go';
+// Logo Icon
+import { FaPaw } from 'react-icons/fa';
 // Framer Motion
 import { motion } from 'framer-motion';
 
@@ -35,6 +35,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
         <h1>
           <Link to='/' className={styles.logo}>
             PetFindr
+            <FaPaw className={styles.pawPeriod} />
           </Link>
         </h1>
         <div className={styles.buttonsArea}>
@@ -127,7 +128,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
             Report a Pet
           </Link>
         </motion.li>
-        
+
         <span></span>
         {loggedIn ? (
           <motion.li whileHover={{ scale: 1.05 }}>

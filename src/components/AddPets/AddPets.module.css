@@ -1,22 +1,19 @@
 /* Report Container */
 .reportContainer {
   padding: 1rem;
-  /* height: 90vh; */
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 }
 /* Card */
 .reportCard {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid red; */
   padding: 2rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   background-color: white;
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   margin: 1rem auto;
 }
 .reportCard form {
@@ -50,6 +47,9 @@
   width: 100%;
   display: flex;
 }
+.reportCard form .textArea label {
+  margin-bottom: 0.5rem;
+}
 .reportCard form .textArea textarea {
   padding: 0.5rem;
   border-color: #bf733b;
@@ -72,7 +72,8 @@
 }
 
 /* All Select, date Inputs */
-.reportCard form div select {
+.reportCard form div select,
+.reportCard form input[type='date'] {
   margin-left: 0.5rem;
 }
 
@@ -92,7 +93,7 @@
 
 /* Phone Number */
 .reportCard form .phoneNumber {
-  width: 220px;
+  width: min-content;
 }
 
 /* Photo */
@@ -115,4 +116,13 @@
   font-size: 1.5rem;
   font-weight: 500;
   cursor: pointer;
+}
+
+/* Not Filled Out Alert */
+.notFilled {
+  text-align: center;
+  color: #e74040;
+  margin: 1rem auto;
+  font-weight: 500;
+  font-size: 1.1rem;
 }

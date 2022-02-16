@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Home.module.css';
+import { FaPaw } from 'react-icons/fa';
+
 import { motion } from 'framer-motion';
 import PetSlider from '../PetSlider/PetSlider';
 import foundPetImage from '../../assets/foundPetImage.jpg';
@@ -12,12 +14,15 @@ function Home({ loggedIn }) {
     <div className={styles.homeContainer}>
       <section className={styles.heroSection}>
         <div className={styles.heroText}>
-          <h2>PetFindr</h2>
-          <h3>Lost or found, we can help your best friend.</h3>
+          <h2>
+            PetFindr
+            <FaPaw className={styles.pawPeriod} />
+          </h2>
+          <h3>Lost or found, we're here to help your best friend.</h3>
         </div>
         {loggedIn ? (
           <div className={styles.heroInfoBox}>
-            <h4>Search for lost pups in your area</h4>
+            <h4>Start searching for pets in your area to see who you can help today!</h4>
             <motion.button
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
