@@ -4,9 +4,10 @@ import styles from './Home.module.css';
 import { FaPaw } from 'react-icons/fa';
 
 import { motion } from 'framer-motion';
-import PetSlider from '../PetSlider/PetSlider';
+import FoundPetSlider from '../PetSlider/FoundPetSlider';
 import foundPetImage from '../../assets/foundPetImage.jpg';
 import lostPetImage from '../../assets/lostPetImage.jpg';
+import LostPetSlider from '../PetSlider/LostPetSlider';
 
 function Home({ loggedIn }) {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ function Home({ loggedIn }) {
         )}
       </section>
       <section>
-        <PetSlider />
+        <LostPetSlider />
       </section>
       <section className={styles.foundPetInfo}>
         <img src={foundPetImage} alt='Sad pets' />
@@ -57,7 +58,7 @@ function Home({ loggedIn }) {
         </div>
       </section>
       <section>
-        <PetSlider />
+        <FoundPetSlider />
       </section>
       <section className={styles.lostPetInfo}>
         <img src={lostPetImage} alt='lost pets' />

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import styles from './PetDashboard.module.css';
 import { Link } from 'react-router-dom';
 import Filter from '../Filter/Filter';
 
 function PetDashboard({ petStatus }) {
+
+
   const [pets, setPets] = useState([]);
   const [filtered, setFiltered] = useState([]);
 
@@ -14,7 +16,6 @@ function PetDashboard({ petStatus }) {
       .then((res) => res.json())
       .then((json) => {
         setPets(json);
-
         if (petStatus.status === 'Found') {
           const filteredFound = json.filter((foundPet) =>
             foundPet.status.includes('Found')
@@ -30,7 +31,7 @@ function PetDashboard({ petStatus }) {
         }
       })
       .catch(console.error);
-  }, [url, petStatus.status]);
+  }, [url]);
 
   if (!pets) {
     return <p>Loading pets looking for their home...</p>;
@@ -41,7 +42,7 @@ function PetDashboard({ petStatus }) {
       <Filter />
       <hr />
       <section className={styles.petsContainer}>
-        {filtered.map((pet) => (
+        {pets.map((pet) => (
           <div className={styles.petCard} key={pet.id}>
             <Link to={`/pets/${pet.id}`} className={styles.link}>
               <div className={styles.petImage}>
