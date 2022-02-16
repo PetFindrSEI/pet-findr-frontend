@@ -175,7 +175,7 @@ function AddPets({ loggedIn }) {
               onChange={handleChange}
               value={newPet.description}
               rows='10'
-              cols='10'
+              cols='50'
             />
           </div>
 

@@ -52,6 +52,9 @@
 }
 .reportCard form .textArea textarea {
   padding: 0.5rem;
+  border-color: #bf733b;
+  border-radius: 5px;
+  max-width: 100%;
 }
 /* All Inputs Type Text */
 .reportCard form input[type='text'],
