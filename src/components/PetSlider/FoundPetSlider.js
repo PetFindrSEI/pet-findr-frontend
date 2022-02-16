@@ -35,6 +35,11 @@ function LostPetSlider(props) {
 					</Link>
 				</div>
 			))}
+			<div className={styles.endCard}>
+				<Link to={`/dashboard/found`} className={styles.linkAll}>
+					See all found pets
+				</Link>
+			</div>
 		</section>
 	);
 }

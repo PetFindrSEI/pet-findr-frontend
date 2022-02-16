@@ -16,6 +16,7 @@ function PetDashboard({ petStatus }) {
       .then((res) => res.json())
       .then((json) => {
         setPets(json);
+
         if (petStatus.status === 'Found') {
           const filteredFound = json.filter((foundPet) =>
             foundPet.status.includes('Found')
@@ -31,7 +32,7 @@ function PetDashboard({ petStatus }) {
         }
       })
       .catch(console.error);
-  }, [url]);
+  }, [url, petStatus.status]);
 
   if (!pets) {
     return <p>Loading pets looking for their home...</p>;
@@ -42,7 +43,7 @@ function PetDashboard({ petStatus }) {
       <Filter />
       <hr />
       <section className={styles.petsContainer}>
-        {pets.map((pet) => (
+        {filtered.map((pet) => (
           <div className={styles.petCard} key={pet.id}>
             <Link to={`/pets/${pet.id}`} className={styles.link}>
               <div className={styles.petImage}>

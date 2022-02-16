@@ -23,22 +23,25 @@ function LostPetSlider(props) {
     }
 
     return (
-        <section className={styles.petsContainer}>
-            {pets.slice(0,6).map((pet) => (
-                <div className={styles.petCard} key={pet.id}>
-                    <Link to={`/pets/${pet.id}`} className={styles.link}>
-                        <div className={styles.petImage}>
-                            <img src={pet.photo} alt={pet.name} />
-                        </div>
-                        <div className={styles.cardTitle}>
-                            <h3 className={styles.name}>{pet.name}</h3>
-                            <h3 className={styles.status}>{pet.status}</h3>
-                        </div>
-                    </Link>
-                </div>
-            ))}
-        </section>
-    );
+			<section className={styles.petsContainer}>
+				{pets.slice(0, 6).map((pet) => (
+					<div className={styles.petCard} key={pet.id}>
+						<Link to={`/pets/${pet.id}`} className={styles.link}>
+							<div className={styles.petImage}>
+								<img src={pet.photo} alt={pet.name} />
+							</div>
+							<div className={styles.cardTitle}>
+								<h3 className={styles.name}>{pet.name}</h3>
+								<h3 className={styles.status}>{pet.status}</h3>
+							</div>
+						</Link>
+					</div>
+				))}
+				<div className={styles.endCard}>
+					<Link to={`/dashboard/lost`} className={styles.linkAll}>See all lost pets</Link>
+				</div>
+			</section>
+		);
 }
 
 export default LostPetSlider;
