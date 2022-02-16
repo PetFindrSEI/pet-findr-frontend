@@ -15,6 +15,7 @@
 	grid-gap: 5px;
 	margin: 10px;
 	justify-items: center;
+  overflow: scroll;
 }
 
 .petCard {

@@ -24,7 +24,7 @@ function LostPetSlider(props) {
 
     return (
         <section className={styles.petsContainer}>
-            {pets.slice(0,3).map((pet) => (
+            {pets.slice(0,6).map((pet) => (
                 <div className={styles.petCard} key={pet.id}>
                     <Link to={`/pets/${pet.id}`} className={styles.link}>
                         <div className={styles.petImage}>
