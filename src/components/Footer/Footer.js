@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Footer.module.css';
 import { Link } from 'react-router-dom';
 
-function Footer(props) {
+function Footer({ setPetStatus }) {
   return (
     <div className={styles.footerContainer}>
       <div className={styles.footerTextArea}>
@@ -10,10 +10,18 @@ function Footer(props) {
           <p>Pets</p>
           <ul>
             <li>
-              <Link to='/'>Lost</Link>
+              <Link
+                to='/dashboard/'
+                onClick={() => setPetStatus({ status: 'Lost' })}>
+                Lost
+              </Link>
             </li>
             <li>
-              <Link to='/'>Found</Link>
+              <Link
+                to='/dashboard/'
+                onClick={() => setPetStatus({ status: 'Found' })}>
+                Found
+              </Link>
             </li>
             <li>
               <Link to='/'>Learn More</Link>

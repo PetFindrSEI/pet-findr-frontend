@@ -1,21 +1,31 @@
+html {
+  width: 100vw;
+}
+
 main {
   padding-top: 60px;
+width: 100vw;
 }
+
 .paw-one {
   position: fixed;
   z-index: -10;
   font-size: 400px;
-  transform: rotate(-48.55deg);
+  -webkit-transform: rotate(-48.55deg);
+      -ms-transform: rotate(-48.55deg);
+          transform: rotate(-48.55deg);
   margin-top: 20vh;
   margin-left: 60%;
-  color: rgba(0, 0, 0, 0.05);
+  color: #ec8b3038;
 }
 .paw-two {
   position: fixed;
   z-index: -10;
   font-size: 400px;
-  transform: rotate(-48.55deg);
+  -webkit-transform: rotate(-48.55deg);
+      -ms-transform: rotate(-48.55deg);
+          transform: rotate(-48.55deg);
   margin-top: 70vh;
   margin-left: 10%;
-  color: rgba(0, 0, 0, 0.05);
+  color: #ec8b3038;
 }

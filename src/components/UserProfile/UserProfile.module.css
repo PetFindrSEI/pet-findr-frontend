@@ -1,0 +1,12 @@
+.profileContainer {
+  padding: 2rem;
+  height: 100vh;
+}
+.profileContainer h2 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+.editingMode {
+  display: flex;
+  flex-direction: column;
+}

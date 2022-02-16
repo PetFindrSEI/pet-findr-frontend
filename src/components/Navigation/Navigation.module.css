@@ -1,14 +1,19 @@
 /* Navigation bar */
 .navBar {
   position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding: 1.5rem 1rem;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 60px;
-  width: 100%;
+  width: 100vw;
   background-color: #fcfcfc;
-  /* background-color: #868686; */
   z-index: 10;
 }
 
@@ -17,10 +22,16 @@
   border: none;
   background-color: transparent;
   color: black;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   padding: 0;
   font-weight: 10px;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
   border-radius: 0.5rem;
 }
@@ -32,10 +43,19 @@
 /* Links on the menu */
 .menuNav {
   position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   z-index: 9;
   background-color: #854ad0;
   width: 100%;
@@ -43,7 +63,8 @@
   padding: 0;
   list-style-type: none;
   text-decoration: none;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   padding-top: 60px;
 }
 /* Links */
@@ -52,12 +73,23 @@
   background-color: transparent;
   text-decoration: none;
   font-weight: 600;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
   padding: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-align: center;
   width: 95%;
   margin: 0 auto;
@@ -87,10 +119,19 @@
 
 /* Buttons Area (Menu and login) */
 .buttonsArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /* Login Link */
 .buttonsArea a {
@@ -98,6 +139,8 @@
   text-decoration: none;
   color: #737272;
   font-weight: 600;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 .buttonsArea a:hover {
@@ -111,5 +154,14 @@
 }
 .logo {
   text-decoration: none;
+  color: black;
+}
+
+/* Paw Period */
+.pawPeriod {
+  font-size: 0.5rem;
+  -webkit-transform: rotate(20deg);
+      -ms-transform: rotate(20deg);
+          transform: rotate(20deg);
   color: black;
 }

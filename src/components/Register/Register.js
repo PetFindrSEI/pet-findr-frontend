@@ -1,9 +1,59 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Register.module.css';
+import axios from 'axios';
+import API_URL from '../../apiUrl';
 
 function Register(props) {
-  
+  const navigate = useNavigate();
+  const [newUser, setNewUser] = useState({
+    username: '',
+    email: '',
+    password: '',
+    re_password: '',
+  });
+  const [errMsg, setErrMsg] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const passwordMatch = 'The passwords do not match';
+
+  const createNewUser = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(API_URL + 'users/', {
+        method: 'POST',
+        body: JSON.stringify(newUser),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.status === 201) {
+        setSuccess(true);
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      }
+      if (response.status !== 201) {
+        setErrMsg(true);
+      }
+    } catch (error) {
+      setErrMsg(true);
+    }
+  };
+
+  // Handle Password match
+  const handlePassword = () => {
+    if (newUser.password !== newUser.re_password) {
+      setErrMsg(true);
+    } else {
+      setErrMsg(false);
+    }
+  };
+
+  // Handle Change
+  const handleChange = (e) => {
+    setNewUser({ ...newUser, [e.target.id]: e.target.value });
+  };
+
   return (
     <div className={styles.registerContainer}>
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'>
@@ -14,15 +64,15 @@ function Register(props) {
       </svg>
       <div className={styles.registerBox}>
         <h2>Register a New Account</h2>
-        <form className={styles.registerForm}>
+        <form className={styles.registerForm} onSubmit={createNewUser}>
           <label htmlFor='username'>Username</label>
           <input
             type='text'
             id='username'
             placeholder='Username'
             autoComplete='off'
-            // value={registered.username}
-            // onChange={handleChange}
+            value={newUser.username}
+            onChange={handleChange}
           />
 
           <label htmlFor='email'>Email</label>
@@ -31,8 +81,8 @@ function Register(props) {
             id='email'
             placeholder='Email'
             autoComplete='off'
-            // value={registered.username}
-            // onChange={handleChange}
+            value={newUser.email}
+            onChange={handleChange}
           />
           <label htmlFor='password'>Password</label>
           <input
@@ -40,12 +90,29 @@ function Register(props) {
             id='password'
             placeholder='Password'
             autoComplete='off'
-            // value={registered.username}
-            // onChange={handleChange}
+            value={newUser.password}
+            onChange={handleChange}
           />
-
+          <label htmlFor='re_password'>Confirm Password</label>
+          <input
+            type='password'
+            id='re_password'
+            placeholder='Password'
+            autoComplete='off'
+            value={newUser.re_password}
+            onChange={handleChange}
+            onBlur={handlePassword}
+          />
+          {errMsg ? (
+            <p className={styles.passwordMatch}>{passwordMatch}</p>
+          ) : null}
           <button>Register</button>
         </form>
+        {success ? (
+          <p>Successfully registered! Redirecting you to login.</p>
+        ) : (
+          ''
+        )}
         <span>
           Already have an account? <Link to='/login'>Login here.</Link>
         </span>

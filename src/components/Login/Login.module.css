@@ -1,5 +1,5 @@
 .loginContainer {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
 }
@@ -17,9 +17,10 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 2rem 3rem;
-  margin: auto;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin: 2rem auto;
+  margin-bottom: 14rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   border: 1px solid #c4c4c4;
 }
 /* Welcome Back Text */
@@ -37,7 +38,7 @@
   width: 100%;
 }
 .loginForm label {
-  color: #202020;
+  color: #242424;
   margin-bottom: 0.2rem;
 }
 .loginForm input {
@@ -53,18 +54,21 @@
 }
 /* Login Button */
 .loginForm button {
-  width: fit-content;
+  width: 100%;
   padding: 0.4rem 1.5rem;
-  margin: 1rem auto;
-  border: 1px solid #13b279;
+  margin: 0rem auto;
+  margin-top: 3rem;
+  border: 1px solid #8dc941;
   background-color: white;
   border-radius: 5px;
   cursor: pointer;
-  color: #13b279;
+  color: #8dc941;
   transition: all 0.2s ease;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 .loginForm button:hover {
-  background-color: #13b279;
+  background-color: #8dc941;
   color: white;
 }
 
@@ -74,4 +78,9 @@
   color: rgba(124, 137, 255, 1);
   font-weight: 300;
   font-size: 1rem;
+}
+
+/* Error Message */
+.errMsg {
+  color: #e74040;
 }

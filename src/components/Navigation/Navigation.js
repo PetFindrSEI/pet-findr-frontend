@@ -1,8 +1,6 @@
 import styles from './Navigation.module.css';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { MdClose } from 'react-icons/md';
-import { FiMenu } from 'react-icons/fi';
 // Hamburger Icon
 import { Divide as Hamburger } from 'hamburger-react';
 // Menu Icons
@@ -11,10 +9,14 @@ import { BiSearchAlt } from 'react-icons/bi';
 import { BsFillExclamationDiamondFill } from 'react-icons/bs';
 import { FiHelpCircle } from 'react-icons/fi';
 import { GoReport } from 'react-icons/go';
+import { FiLogOut } from 'react-icons/fi';
+import { GoDashboard } from 'react-icons/go';
+// Logo Icon
+import { FaPaw } from 'react-icons/fa';
 // Framer Motion
 import { motion } from 'framer-motion';
 
-function Navigation({ setPetStatus }) {
+function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
   const urlLocation = useLocation();
   const [navbarOpen, setNavbarOpen] = useState(false);
 
@@ -33,11 +35,16 @@ function Navigation({ setPetStatus }) {
         <h1>
           <Link to='/' className={styles.logo}>
             PetFindr
+            <FaPaw className={styles.pawPeriod} />
           </Link>
         </h1>
         <div className={styles.buttonsArea}>
           <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 0.975 }}>
-            <Link to='/login'>Login</Link>
+            {userInfo ? (
+              <Link to='/user-profile'>{userInfo.username}</Link>
+            ) : (
+              <Link to='/login'>Login</Link>
+            )}
           </motion.div>
           {/* Hamburger Button */}
           <motion.button
@@ -73,7 +80,7 @@ function Navigation({ setPetStatus }) {
             onClick={() => {
               setPetStatus({ status: '' });
             }}>
-            <AiOutlineHome className={styles.icon} />
+            <GoDashboard className={styles.icon} />
             Dashboard
           </Link>
         </motion.li>
@@ -107,7 +114,7 @@ function Navigation({ setPetStatus }) {
         <span></span>
         {/* How It Works Link */}
         <motion.li whileHover={{ scale: 1.05 }}>
-          <Link to='/'>
+          <Link to='/howitworks'>
             <FiHelpCircle className={styles.icon} />
             How it Works?
           </Link>
@@ -121,6 +128,18 @@ function Navigation({ setPetStatus }) {
             Report a Pet
           </Link>
         </motion.li>
+
+        <span></span>
+        {loggedIn ? (
+          <motion.li whileHover={{ scale: 1.05 }}>
+            <Link to='/' onClick={handleLogout}>
+              <FiLogOut className={styles.icon} />
+              Logout
+            </Link>
+          </motion.li>
+        ) : (
+          ''
+        )}
       </ul>
     </div>
   );

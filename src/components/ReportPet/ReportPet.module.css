@@ -1,6 +1,6 @@
 .reportPet {
-  width: 100%;
-  background-color: #350572;
+  width: 100vw;
+  background-color: #482279;
   color: white;
   padding: 1rem;
   display: flex;
@@ -14,4 +14,18 @@
 }
 .reportContainer a {
   text-decoration: none;
+}
+
+.reportPetAlert {
+  width: 100vw;
+  background-color: #E74040;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.reportPetAlert p {
+  text-align: center;
 }

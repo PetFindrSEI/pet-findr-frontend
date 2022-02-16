@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import styles from './PetDashboard.module.css';
 import { Link } from 'react-router-dom';
 import Filter from '../Filter/Filter';
 
 function PetDashboard({ petStatus }) {
+
+
   const [pets, setPets] = useState([]);
   const [filtered, setFiltered] = useState([]);
 
@@ -43,7 +45,7 @@ function PetDashboard({ petStatus }) {
       <section className={styles.petsContainer}>
         {filtered.map((pet) => (
           <div className={styles.petCard} key={pet.id}>
-            <Link to={`/dashboard/${pet.id}`} className={styles.link}>
+            <Link to={`/pets/${pet.id}`} className={styles.link}>
               <div className={styles.petImage}>
                 <img src={pet.photo} alt={pet.name} />
               </div>
