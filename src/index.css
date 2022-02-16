@@ -13,11 +13,15 @@ code {
 } */
 
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 body {
   font-family: 'Work Sans', sans-serif;
+  overflow-x: hidden;
+  width: fit-content;
 }

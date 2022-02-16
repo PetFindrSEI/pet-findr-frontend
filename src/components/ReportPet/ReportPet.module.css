@@ -1,5 +1,5 @@
 .reportPet {
-  width: 100%;
+  width: 100vw;
   background-color: #482279;
   color: white;
   padding: 1rem;
@@ -17,7 +17,7 @@
 }
 
 .reportPetAlert {
-  width: 100%;
+  width: 100vw;
   background-color: #E74040;
   color: white;
   padding: 1rem;
