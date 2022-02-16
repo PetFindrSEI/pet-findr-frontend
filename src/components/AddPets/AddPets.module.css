@@ -1,110 +1,115 @@
 /* Report Container */
 .reportContainer {
+  padding: 1rem;
+  /* height: 90vh; */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+/* Card */
+.reportCard {
   display: flex;
   flex-direction: column;
+  /* border: 1px solid red; */
   padding: 2rem;
-  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-color: white;
   width: 100%;
   max-width: 800px;
+  margin: 1rem auto;
 }
-/* Report H2 */
-.reportContainer h2 {
-  font-size: 3rem;
+.reportCard form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title */
+.reportCard h2 {
   font-weight: 600;
-  margin: 0 auto;
-  margin-bottom: 2rem;
-}
-/* Report Form */
-.reportForm {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  justify-content: center;
-}
-/* Options */
-.options {
-  display: flex;
-  flex-direction: column;
-}
-.options select {
-  margin-left: 1rem;
-  margin-bottom: 0.5rem;
-  padding: 0.2rem;
+  color: #242424;
+  margin-bottom: 1.5rem;
 }
 
-/* Name */
-.reportForm .name {
-  background: linear-gradient(135deg, #1028ff -20.64%, #7c89ff 85.66%);
-  width: 200px;
-  padding: 1rem 2rem;
-  padding-left: 2.5rem;
-  border: none;
-  border-radius: 50px;
-  color: white;
-  /* margin-left: 9rem; */
-  margin-bottom: 1rem;
+/* Labels */
+.reportCard form label {
+  color: #242424;
 }
 
-/* Name ::placeholder */
-.reportForm .name::placeholder {
-  color: white;
-}
-.reportForm .name:focus {
-  outline: none;
-}
-
-/* Pencil Edit Icon */
-.editIcon {
-  position: absolute;
-  margin-top: 1rem;
-  margin-left: 1rem;
-  color: white;
-}
-.reportForm .photoContainer {
-  width: 100%;
-  max-width: 500px;
-  height: 250px;
-  border-radius: 10px;
-  background: #f8f8f8;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-.reportForm .photo {
-  width: 500px;
-  height: 250px;
-  border-radius: 10px;
-  cursor: pointer;
-  padding-left: 5rem;
-  padding-top: 11.5rem;
-}
-
-/* Photo Icon */
-.photoIcon {
-  position: absolute;
-  font-size: 4rem;
-  margin-left: calc(250px - 2rem);
-  margin-top: calc(125px - 3rem);
-  color: #c4c4c4;
-  cursor: pointer;
-}
-
-/* Inputs */
-.reportForm input {
-  width: 250px;
-  padding: 0.3rem 0.5rem;
+/* Each Individual Model Option */
+.reportCard form div {
   margin-bottom: 1rem;
 }
 /* TextArea */
-.reportForm textarea {
+.textArea {
+  display: flex;
+  flex-direction: column;
+}
+/* Any full div that is a text input */
+.reportCard form .textInput {
   width: 100%;
-  max-width: 500px;
-  margin-bottom: 1rem;
+  display: flex;
+}
+.reportCard form .textArea textarea {
+  padding: 0.5rem;
+}
+/* All Inputs Type Text */
+.reportCard form input[type='text'],
+.reportCard form input[type='tel'] {
+  padding: 0 0.5rem;
+  width: 100%;
+  margin-left: 0.5rem;
+  border: none;
+  border-bottom: 1px solid #bf733b;
+  color: #242424;
+}
+.reportCard form input[type='text']:focus,
+.reportCard form input[type='tel']:focus {
+  outline: none;
+}
+
+/* All Select, date Inputs */
+.reportCard form div select {
+  margin-left: 0.5rem;
+}
+
+/* Options */
+.reportCard form .options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-row-gap: 1rem;
+}
+
+/* Gender and Microchip */
+.reportCard form .options .gender,
+.reportCard form .options .microchip {
+  justify-self: end;
+}
+
+/* Phone Number */
+.reportCard form .phoneNumber {
+  width: 220px;
+}
+
+/* Photo */
+.reportCard form .photoContainer {
+  margin: 2rem 0;
+}
+.reportCard form .photoContainer input {
+  margin-left: 0.5rem;
 }
 
 /* Submit Button */
-.submitBtn {
-  width: fit-content;
-  padding: 0.3rem;
+.reportCard form input[type='submit'] {
+  height: fit-content;
+  width: 100%;
+  color: white;
+  background-color: #bf733b;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
 }
