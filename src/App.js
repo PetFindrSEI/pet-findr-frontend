@@ -24,15 +24,21 @@ function App() {
   const [filtered, setFiltered] = useState([]);
 
   const url = `https://petfindr-api.herokuapp.com/pets/`;
+  const [errMsg, setErrMsg] = useState('');
+
+  const getAllPets = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setPets(data);
+      setFiltered(data);
+    } catch (error) {
+      setErrMsg(error);
+    }
+  };
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((json) => {
-        setPets(json);
-        setFiltered(json);
-      })
-      .catch((err) => console.log(err));
+    getAllPets();
   }, []);
 
   const [petStatus, setPetStatus] = useState({});
@@ -127,7 +133,7 @@ function App() {
         />
       </header>
       <main>
-        <ReportPet locationReportPet={locationReportPet} loggedIn={loggedIn}/>
+        <ReportPet locationReportPet={locationReportPet} loggedIn={loggedIn} />
         <Routes>
           <Route
             path='/'

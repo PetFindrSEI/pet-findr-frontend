@@ -50,17 +50,17 @@ function PetDashboard({
               key={pet.id}>
               <Link to={`/pets/${pet.id}`} className={styles.link}>
                 <div className={styles.petImage}>
-                  <img src={pet.photo} alt={pet.name} />
+                  <img src={pet?.photo} alt={pet?.name} />
                 </div>
                 <div className={styles.cardTitle}>
-                  <h3 className={styles.name}>{pet.name}</h3>
-                  <h3 className={styles.status}>{pet.status}</h3>
+                  <h3 className={styles.name}>{pet?.name}</h3>
+                  <h3 className={styles.status}>{pet?.status}</h3>
                 </div>
                 <div>
-                  <p>{pet.gender}</p>
-                  <p>{pet.type}</p>
-                  <p>{pet.location}</p>
-                  <p>{pet.reported_time}</p>
+                  <p>{pet?.gender}</p>
+                  <p>{pet?.type}</p>
+                  <p>{pet?.location}</p>
+                  <p>{pet?.reported_time}</p>
                 </div>
               </Link>
             </motion.div>
