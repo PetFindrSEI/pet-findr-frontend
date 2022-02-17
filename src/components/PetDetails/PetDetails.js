@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import styles from './PetDetails.module.css';
 import moment from 'moment';
+import Modal from 'react-modal';
+// import API_URL from './apiURL';
+// Modal error message
+Modal.setAppElement('#root')
 
-function PetDetails(props) {
+function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 	const [pet, setPet] = useState(null);
 	const { id } = useParams();
+	const [modalIsOpen, setModalIsOpen] = useState(false);
+	// const [remove, setRemove] = useState();
+	const url = `https://petfindr-api.herokuapp.com/pets/${id}`;
+	const navigate = useNavigate();
 
 	async function getPet() {
-		const url = `https://petfindr-api.herokuapp.com/pets/${id}`;
-
 		try {
 			const res = await fetch(url);
 			const resJson = await res.json();
@@ -21,7 +27,25 @@ function PetDetails(props) {
 
 	useEffect(() => {
 		getPet();
+		return setRefreshingPet(false);
 	}, []);
+
+	const deletePet = async () => {
+		const response = await fetch(url, {
+			method: `DELETE`,
+			headers: {
+				Authorization: `Token ${localStorage.getItem(`token`)}`,
+			},
+		});
+		if (response.status === 204) {
+			setRefreshingPet(true);
+			setTimeout(() => {
+				navigate(`/dashboard`);
+			}, 1000);
+		} else {
+			console.error();
+		}
+	};
 
 	if (!pet) {
 		return <p>Loading pet details...</p>;
@@ -34,9 +58,9 @@ function PetDetails(props) {
 					<h3 className={styles.name}>{pet.name}</h3>
 					<h4 className={styles.status}>Status: {pet.status}</h4>
 				</div>
-					<div className={styles.imgDiv}>
-						<img className={styles.img} src={pet.photo} alt={pet.name} />
-					</div>
+				<div className={styles.imgDiv}>
+					<img className={styles.img} src={pet.photo} alt={pet.name} />
+				</div>
 				<h3>Pet Descriptors</h3>
 				<hr />
 				<ul>
@@ -53,7 +77,60 @@ function PetDetails(props) {
 					<li>Last Location: {pet.location}</li>
 					<li>Date: {moment(pet.reported_time).format('LLL')}</li>
 				</ul>
-        <button className={styles.contact}>Contact</button>
+				<div className={styles.buttons}>
+					<button
+						onClick={() => setModalIsOpen(true)}
+						className={styles.contact}>
+						Contact
+					</button>
+					{(loggedIn && pet.owner_email === userInfo.email) ? (
+						<button onClick={() => deletePet()} className={styles.contact}>
+							Delete
+						</button>
+					) : (
+						''
+					)}
+				</div>
+				<div className={styles.modalDiv}>
+					<Modal
+						isOpen={modalIsOpen}
+						onRequestClose={() => setModalIsOpen(false)}
+						style={{
+							overlay: {
+								position: 'fixed',
+								top: 0,
+								left: 0,
+								right: 0,
+								bottom: 0,
+								backgroundColor: 'rgba(255, 255, 255, 0.75)',
+							},
+							content: {
+								position: 'absolute',
+								top: '20%',
+								left: '30%',
+								right: '30%',
+								bottom: '20%',
+								border: '1px solid #ccc',
+								background: '#fff',
+								overflow: 'auto',
+								WebkitOverflowScrolling: 'touch',
+								borderRadius: '4px',
+								outline: 'none',
+								padding: '20px',
+							},
+						}}>
+						<h2 className={styles.modalTitle}>Contact Info</h2>
+						<h4 className={styles.subhead}>Phone Number: </h4>
+						<p className={styles.modalItem}>{pet.phone_number}</p>
+						<h4 className={styles.subhead}>Email: </h4>
+						<p className={styles.modalItem}>{pet.owner_email}</p>
+						<button
+							className={styles.contact}
+							onClick={() => setModalIsOpen(false)}>
+							Close
+						</button>
+					</Modal>
+				</div>
 			</div>
 		</div>
 	);

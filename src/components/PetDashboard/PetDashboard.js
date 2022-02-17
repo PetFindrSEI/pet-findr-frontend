@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 // Styling
 import styles from './PetDashboard.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import moment from 'moment';
 // Components
 import Filter from '../Filter/Filter';
+
 
 function PetDashboard({
   petStatus,
@@ -36,39 +38,42 @@ function PetDashboard({
   }
 
   return (
-    <div>
-      <Filter petStatus={petStatus} setPetStatus={setPetStatus} />
-      <motion.div layout className={styles.petsContainer}>
-        <AnimatePresence>
-          {filtered.map((pet) => (
-            <motion.div
-              layout
-              animate={{ opacity: 1 }}
-              initial={{ opacity: 0 }}
-              exit={{ opacity: 0 }}
-              className={styles.petCard}
-              key={pet.id}>
-              <Link to={`/pets/${pet.id}`} className={styles.link}>
-                <div className={styles.petImage}>
-                  <img src={pet.photo} alt={pet.name} />
-                </div>
-                <div className={styles.cardTitle}>
-                  <h3 className={styles.name}>{pet.name}</h3>
-                  <h3 className={styles.status}>{pet.status}</h3>
-                </div>
-                <div>
-                  <p>{pet.gender}</p>
-                  <p>{pet.type}</p>
-                  <p>{pet.location}</p>
-                  <p>{pet.reported_time}</p>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
-    </div>
-  );
+		<div>
+			<Filter petStatus={petStatus} setPetStatus={setPetStatus} />
+			<motion.div layout className={styles.petsContainer}>
+				<AnimatePresence>
+					{filtered.map((pet) => (
+						<motion.div
+							layout
+							animate={{ opacity: 1 }}
+							initial={{ opacity: 0 }}
+							exit={{ opacity: 0 }}
+							className={styles.petCard}
+							key={pet.id}>
+							<Link to={`/pets/${pet.id}`} className={styles.link}>
+								<div className={styles.petImage}>
+									<img src={pet?.photo} alt={pet?.name} />
+								</div>
+								<div className={styles.cardTitle}>
+									<h3 className={styles.name}>{pet?.name}</h3>
+									<h3 className={styles.status}>{pet?.status}</h3>
+								</div>
+								<div className={styles.infoContainer}>
+									<p>
+										{pet?.type} - {pet?.gender}
+									</p>
+									<p>Location: {pet?.location}</p>
+									<p>
+										Reported Date: {moment(pet.reported_time).format('ll')}
+									</p>
+								</div>
+							</Link>
+						</motion.div>
+					))}
+				</AnimatePresence>
+			</motion.div>
+		</div>
+	);
 }
 
 export default PetDashboard;

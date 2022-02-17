@@ -6,6 +6,14 @@ main {
   padding-top: 60px;
   width: 100vw;
 }
+.App {
+  margin-top: auto;
+}
+.App footer {
+  border: 1px solid blue;
+  margin-top: auto;
+}
+
 
 .paw-one {
   position: fixed;
@@ -46,9 +54,9 @@ main {
 button.active {
   background: #854ad0;
   color: white;
-  transform: translateZ(1rem);
-  padding: 0.4rem 2.3rem;
-  transition: all 0.2s ease;
+  /* transform: translateZ(1rem); */
+  /* padding: 0.4rem 2.3rem; */
+  /* transition: all 0.2s ease; */
 }
 
 @media (max-width: 500px) {
