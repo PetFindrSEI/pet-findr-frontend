@@ -1,21 +1,11 @@
-.sliderContainer {
-  height: 30vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: gray;
-  margin: 2rem auto;
-  width: 100%;
-  max-width: 800px;
-}
 
 .petsContainer {
+  justify-items: center;
+  max-width: 100vw;
   display: flex;
 	grid-gap: 5px;
-	margin: 10px;
-	justify-items: center;
-  overflow: scroll;
+	margin: 15px;
+  overflow: auto;
 }
 .endCard {
   width: 250px;
@@ -28,6 +18,14 @@
   align-items: center;
 }
 .linkAll {
+  width: auto;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #cb6344;
+  font-size: medium;
+  font-weight: 600;
+}
+.linkFound {
   width: auto;
   white-space: nowrap;
   text-decoration: none;
@@ -83,9 +81,13 @@
 .link {
   text-decoration: none;
 }
-.status {
+.statusFound {
   font-size: medium;
   color: #44CB82;
+}
+.status {
+  font-size: medium;
+  color: #cb6344;
 }
 hr {
   display: block;

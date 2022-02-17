@@ -57,11 +57,13 @@
   font-size: medium;
   color: #44CB82;
 }
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid rgb(220, 220, 220);
-  margin: 1em 2em;
-  padding: 0;
+
+.infoContainer {
+  background-color: #f4c9a243;
+  color: black;
+  font-weight: 200;
+  font-style: italic;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 5px;
 }
