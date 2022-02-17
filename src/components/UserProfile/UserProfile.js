@@ -10,6 +10,8 @@ function UserProfile({ handleLogout, userInfo, loggedIn }) {
   const navigate = useNavigate();
   const [editingMode, setEditingMode] = useState(false);
   const [newUserInfo, setNewUserInfo] = useState({});
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState({});
 
   useEffect(() => {
     if (!userInfo) {
@@ -20,34 +22,59 @@ function UserProfile({ handleLogout, userInfo, loggedIn }) {
   useEffect(() => {
     console.log(userInfo);
     console.log(newUserInfo);
+    console.log(localStorage.getItem('token'));
+    console.log(currentPassword);
   }, [newUserInfo]);
 
-  // // DELETE A USER
-  // const deleteUser = (e) => {
-  //   e.preventDefault();
-  //   axios.delete(API_URL + 'users/me').then((res) => {
-  //     console.log(res);
-  //   });
-  // };
+  useEffect(() => {
+    console.log(currentPassword.password);
+  }, [currentPassword]);
+
+  // DELETE A USER
+  const deleteUser = async (e) => {
+    e.preventDefault();
+    // axios.delete(API_URL + 'users/me').then((res) => {
+    //   console.log(res);
+    // });
+    try {
+      const response = await fetch(API_URL + `admin/`, {
+        method: 'DELETE',
+        // body: JSON.stringify(currentPassword.password),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          Authorization: `Token ${localStorage.getItem('token')}`,
+        },
+      });
+      console.log(response);
+      if (response.status === 200) {
+        navigate('/');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // EDIT USERNAME
   const editUsername = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     try {
       const response = await fetch(
-        API_URL + `users/set_${newUserInfo.username}/`,
+        API_URL + `users/reset_${newUserInfo.username}/`,
         {
           method: 'POST',
           body: JSON.stringify(newUserInfo),
           headers: {
-            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/json',
             Authorization: `Token ${localStorage.getItem('token')}`,
           },
         }
       );
+      console.log(response);
       if (response.status === 404 || response.status === 405) {
         console.log('something went wrong');
       } else {
+        console.log(response);
         setEditingMode(false);
         setNewUserInfo({});
       }
@@ -59,6 +86,10 @@ function UserProfile({ handleLogout, userInfo, loggedIn }) {
   // Handle Change
   const handleChange = (e) => {
     setNewUserInfo({ ...newUserInfo, [e.target.id]: e.target.value });
+  };
+  // Handle Input Password
+  const handleInputPassword = (e) => {
+    setCurrentPassword({ ...currentPassword, [e.target.id]: e.target.value });
   };
 
   return (
@@ -101,8 +132,8 @@ function UserProfile({ handleLogout, userInfo, loggedIn }) {
             type='text'
             id='re_password'
             autoComplete='off'
-            // value={userInfo.re_password}
-            // onChange={handleChange}
+            value={newUserInfo.re_password}
+            onChange={handleChange}
           />
         </div>
       ) : (
@@ -122,7 +153,30 @@ function UserProfile({ handleLogout, userInfo, loggedIn }) {
         <div className={styles.editButtonsDiv}>
           <button onClick={() => setEditingMode(false)}>Cancel Changes</button>
           <button onClick={() => editUsername()}>Save Changes</button>
-          <button>Delete Account</button>
+          <button onClick={() => setDeleteModal(true)}>Delete Account</button>
+          {deleteModal ? (
+            <>
+              <p>Are you sure you want to delete this account?</p>
+              <p>Please input the current password to delete</p>
+              <form onSubmit={deleteUser}>
+                <label htmlFor='password'>Password</label>
+                <input
+                  type='text'
+                  id='password'
+                  autoComplete='off'
+                  value={currentPassword.password}
+                  onChange={handleInputPassword}
+                />
+                <input
+                  type='submit'
+                  value='Delete Account'
+                  // onClick={setDeleteModal(false)}
+                />
+              </form>
+            </>
+          ) : (
+            ''
+          )}
         </div>
       ) : (
         <div className={styles.buttonDiv}>
