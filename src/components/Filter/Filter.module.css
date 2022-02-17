@@ -37,3 +37,18 @@
   background-color: #854ad0;
   color: #fff;
 }
+@media (max-width: 500px) {
+  .filterContainer {
+    padding: 0.5rem 1rem;
+  }
+  .filterContainer div {
+    margin-left: 0rem;
+  }
+  .filterContainer p {
+    margin-left: 0rem;
+  }
+  .filterContainer button {
+    margin: 0.3rem 0;
+    margin-right: 0.5rem;
+  }
+}

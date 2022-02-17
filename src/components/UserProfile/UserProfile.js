@@ -1,12 +1,15 @@
+// Dependencies
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Profiler } from 'react/cjs/react.production.min';
-
+import API_URL from '../../apiUrl';
+import axios from 'axios';
+// Styling
 import styles from './UserProfile.module.css';
 
 function UserProfile({ handleLogout, userInfo, loggedIn }) {
   const navigate = useNavigate();
   const [editingMode, setEditingMode] = useState(false);
+  const [newUserInfo, setNewUserInfo] = useState({});
 
   useEffect(() => {
     if (!userInfo) {
@@ -14,9 +17,55 @@ function UserProfile({ handleLogout, userInfo, loggedIn }) {
     }
   }, []);
 
+  useEffect(() => {
+    console.log(userInfo);
+    console.log(newUserInfo);
+  }, [newUserInfo]);
+
+  // // DELETE A USER
+  // const deleteUser = (e) => {
+  //   e.preventDefault();
+  //   axios.delete(API_URL + 'users/me').then((res) => {
+  //     console.log(res);
+  //   });
+  // };
+
+  // EDIT USERNAME
+  const editUsername = async (e) => {
+    // e.preventDefault();
+    try {
+      const response = await fetch(
+        API_URL + `users/set_${newUserInfo.username}/`,
+        {
+          method: 'POST',
+          body: JSON.stringify(newUserInfo),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+      if (response.status === 404 || response.status === 405) {
+        console.log('something went wrong');
+      } else {
+        setEditingMode(false);
+        setNewUserInfo({});
+      }
+    } catch (error) {
+      console.log('Oh no!', error);
+    }
+  };
+
+  // Handle Change
+  const handleChange = (e) => {
+    setNewUserInfo({ ...newUserInfo, [e.target.id]: e.target.value });
+  };
+
   return (
     <div className={styles.profileContainer}>
-      <h2>{userInfo?.username}'s PetFindr Profile</h2>
+      <h2>
+        <span>{userInfo?.username}'s</span> PetFindr Profile
+      </h2>
 
       {editingMode ? (
         <div className={styles.editingMode}>
@@ -24,64 +73,74 @@ function UserProfile({ handleLogout, userInfo, loggedIn }) {
           <input
             type='text'
             id='username'
-            placeholder='Username'
             autoComplete='off'
-            // value={user.email}
-            // onChange={handleChange}
+            placeholder={userInfo.username}
+            value={newUserInfo.username}
+            onChange={handleChange}
           />
           <label htmlFor='email'>Email</label>
           <input
             type='text'
             id='email'
-            placeholder='Email'
             autoComplete='off'
-            // value={user.email}
-            // onChange={handleChange}
+            placeholder={userInfo.email}
+            value={newUserInfo.email}
+            onChange={handleChange}
           />
           <label htmlFor='password'>Password</label>
           <input
             type='text'
             id='password'
-            placeholder='Password'
             autoComplete='off'
-            // value={user.email}
-            // onChange={handleChange}
+            placeholder={userInfo.password}
+            value={newUserInfo.password}
+            onChange={handleChange}
           />
           <label htmlFor='re_password'>Confirm Password</label>
           <input
             type='text'
             id='re_password'
-            placeholder='Confirm Password'
             autoComplete='off'
-            // value={user.email}
+            // value={userInfo.re_password}
             // onChange={handleChange}
           />
         </div>
       ) : (
-        <div>
+        <div className={styles.usersInfo}>
           <ul>
-            <li>Username: {userInfo?.username}</li>
-            <li>Email Address: {userInfo?.email}</li>
+            <li>
+              Username: <span>{userInfo?.username}</span>
+            </li>
+            <li>
+              Email Address: <span>{userInfo?.email}</span>
+            </li>
           </ul>
         </div>
       )}
 
       {editingMode ? (
-        <>
-          <button onClick={() => setEditingMode(false)}>Save Changes</button>
+        <div className={styles.editButtonsDiv}>
+          <button onClick={() => setEditingMode(false)}>Cancel Changes</button>
+          <button onClick={() => editUsername()}>Save Changes</button>
           <button>Delete Account</button>
-        </>
+        </div>
       ) : (
-        <>
-          <button
+        <div className={styles.buttonDiv}>
+          {/* <button
             onClick={() => {
               navigate('/dashboard');
             }}>
             My Reported Pets
+          </button> */}
+          <button
+            onClick={() => {
+              setEditingMode(true);
+              setNewUserInfo({});
+            }}>
+            Edit Account
           </button>
           <button onClick={handleLogout}>Logout</button>
-          <button onClick={() => setEditingMode(true)}>Edit Account</button>
-        </>
+        </div>
       )}
     </div>
   );
