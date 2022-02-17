@@ -40,8 +40,10 @@
     max-width: fit-content;
 }
 .contact {
+    display: flex;
+    justify-content: center;
     height: fit-content;
-    width: 100%;
+    width: 40%;
     color: white;
     background-color: #bf733b;
     border: none;
@@ -50,6 +52,7 @@
     font-size: 1.5rem;
     font-weight: 500;
     cursor: pointer;
+    margin: 1rem;
 }
 .header {
     display: flex;
@@ -62,4 +65,15 @@ hr {
   border-top: 1px solid rgb(220, 220, 220);
   margin: 1em 0em;
   padding: 0;
+}
+.modalTitle {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+/* .modalItem {
+    border: 1px solid red;
+} */
+.subhead {
+    margin: .5rem 0rem;
 }

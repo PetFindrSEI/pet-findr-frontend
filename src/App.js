@@ -22,6 +22,7 @@ import HowItWorks from './components/HowItWorks/HowItWorks';
 function App() {
 	const [pets, setPets] = useState([]);
 	const [filtered, setFiltered] = useState([]);
+	const [refreshingPet, setRefreshingPet] = useState(false);
 
 	const url = `https://petfindr-api.herokuapp.com/pets/`;
 	const [errMsg, setErrMsg] = useState('');
@@ -40,6 +41,10 @@ function App() {
 	useEffect(() => {
 		getAllPets();
 	}, []);
+
+	useEffect(() => {
+		getAllPets();
+	}, [refreshingPet]);
 
 	const [petStatus, setPetStatus] = useState({});
 
@@ -116,7 +121,7 @@ function App() {
 	}, [loggedIn]);
 
 	return (
-		<div>
+		<div className='App'>
 			<div className='paw-one'>
 				<FaPaw />
 			</div>
@@ -143,7 +148,16 @@ function App() {
 						element={<Login handleSetLoggedIn={handleSetLoggedIn} />}
 					/>
 					<Route path='/register' element={<Register />} />
-					<Route path='/report-pet' element={<AddPets loggedIn={loggedIn} />} />
+					<Route
+						path='/report-pet'
+						element={
+							<AddPets
+								refreshingPet={refreshingPet}
+								setRefreshingPet={setRefreshingPet}
+								loggedIn={loggedIn}
+							/>
+						}
+					/>
 					<Route
 						path='/dashboard'
 						element={
@@ -156,7 +170,16 @@ function App() {
 							/>
 						}
 					/>
-					<Route path='/pets/:id' element={<PetDetails />}></Route>
+					<Route
+						path='/pets/:id'
+						element={
+							<PetDetails
+								refreshingPet={refreshingPet}
+								setRefreshingPet={setRefreshingPet}
+								userInfo={userInfo}
+								loggedIn={loggedIn}
+							/>
+						}></Route>
 					<Route
 						path='/user-profile'
 						element={
