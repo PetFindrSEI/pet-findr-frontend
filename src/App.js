@@ -17,12 +17,25 @@ import AddPets from './components/AddPets/AddPets';
 import PetDashboard from './components/PetDashboard/PetDashboard';
 import PetDetails from './components/PetDetails/PetDetails';
 import UserProfile from './components/UserProfile/UserProfile';
-import HowItWorks from './components/HowItWorks/HowItWorks'
+import HowItWorks from './components/HowItWorks/HowItWorks';
 
 function App() {
-  const [petStatus, setPetStatus] = useState({
-    status: '',
-  });
+  const [pets, setPets] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+
+  const url = `https://petfindr-api.herokuapp.com/pets/`;
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((json) => {
+        setPets(json);
+        setFiltered(json);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const [petStatus, setPetStatus] = useState({});
 
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(
@@ -114,10 +127,12 @@ function App() {
         />
       </header>
       <main>
-        <ReportPet locationReportPet={locationReportPet} />
-
+        <ReportPet locationReportPet={locationReportPet} loggedIn={loggedIn}/>
         <Routes>
-          <Route path='/' element={<Home loggedIn={loggedIn} />} />
+          <Route
+            path='/'
+            element={<Home loggedIn={loggedIn} setPetStatus={setPetStatus} />}
+          />
           <Route
             path='/login'
             element={<Login handleSetLoggedIn={handleSetLoggedIn} />}
@@ -126,11 +141,15 @@ function App() {
           <Route path='/report-pet' element={<AddPets loggedIn={loggedIn} />} />
           <Route
             path='/dashboard'
-            element={<PetDashboard petStatus={petStatus} />}
-          />
-          <Route
-            path='/dashboard/:status'
-            element={<PetDashboard petStatus={petStatus} />}
+            element={
+              <PetDashboard
+                petStatus={petStatus}
+                setPetStatus={setPetStatus}
+                pets={pets}
+                filtered={filtered}
+                setFiltered={setFiltered}
+              />
+            }
           />
           <Route path='/pets/:id' element={<PetDetails />}></Route>
           <Route
@@ -143,7 +162,7 @@ function App() {
               />
             }
           />
-          <Route path='/howitworks' element={<HowItWorks/>}></Route>
+          <Route path='/howitworks' element={<HowItWorks />}></Route>
         </Routes>
       </main>
       <footer>

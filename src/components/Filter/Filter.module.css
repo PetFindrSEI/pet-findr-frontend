@@ -1,0 +1,54 @@
+/* Filter Container */
+.filterContainer {
+  margin: 1rem auto;
+  margin-top: 0;
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(20px);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+/* "Filter Search" */
+.filterContainer h3 {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.filterContainer h3 .icon {
+  margin-left: 1rem;
+}
+
+/* All div's of search parameters */
+.filterContainer div {
+  margin-left: 0.8rem;
+}
+/* All parameter titles */
+.filterContainer p {
+  margin-left: -0.8rem;
+}
+/* All buttons */
+.filterContainer button {
+  margin: 0.5rem -0.8rem;
+}
+/* Clear Filters BUtton */
+.clearFilters {
+  margin-top: 1rem;
+}
+.clearFilters button {
+  background-color: #854ad0;
+  color: #fff;
+}
+@media (max-width: 500px) {
+  .filterContainer {
+    padding: 0.5rem 1rem;
+  }
+  .filterContainer div {
+    margin-left: 0rem;
+  }
+  .filterContainer p {
+    margin-left: 0rem;
+  }
+  .filterContainer button {
+    margin: 0.3rem 0;
+    margin-right: 0.5rem;
+  }
+}

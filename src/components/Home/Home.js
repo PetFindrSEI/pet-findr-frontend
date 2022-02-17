@@ -9,7 +9,7 @@ import foundPetImage from '../../assets/foundPetImage.jpg';
 import lostPetImage from '../../assets/lostPetImage.jpg';
 import LostPetSlider from '../PetSlider/LostPetSlider';
 
-function Home({ loggedIn }) {
+function Home({ loggedIn, setPetStatus }) {
   const navigate = useNavigate();
   return (
     <div className={styles.homeContainer}>
@@ -23,7 +23,10 @@ function Home({ loggedIn }) {
         </div>
         {loggedIn ? (
           <div className={styles.heroInfoBox}>
-            <h4>Start searching for pets in your area to see who you can help today!</h4>
+            <h4>
+              Start searching for pets in your area to see who you can help
+              today!
+            </h4>
             <motion.button
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
@@ -49,7 +52,7 @@ function Home({ loggedIn }) {
         )}
       </section>
       <section>
-        <LostPetSlider />
+        <LostPetSlider setPetStatus={setPetStatus} />
       </section>
       <section className={styles.foundPetInfo}>
         <img src={foundPetImage} alt='Sad pets' />
@@ -58,7 +61,7 @@ function Home({ loggedIn }) {
         </div>
       </section>
       <section>
-        <FoundPetSlider />
+        <FoundPetSlider setPetStatus={setPetStatus} />
       </section>
       <section className={styles.lostPetInfo}>
         <img src={lostPetImage} alt='lost pets' />

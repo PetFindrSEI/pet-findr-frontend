@@ -1,38 +1,35 @@
-import React, { useState, useEffect, Component } from 'react';
-import styles from './PetDashboard.module.css';
+// Dependencies
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// Styling
+import styles from './PetDashboard.module.css';
+import { motion, AnimatePresence } from 'framer-motion';
+// Components
 import Filter from '../Filter/Filter';
 
-function PetDashboard({ petStatus }) {
-
-
-  const [pets, setPets] = useState([]);
-  const [filtered, setFiltered] = useState([]);
-
-  const url = `https://petfindr-api.herokuapp.com/pets/`;
+function PetDashboard({
+  petStatus,
+  setPetStatus,
+  pets,
+  filtered,
+  setFiltered,
+}) {
+  const filterResults = () => {
+    const results = pets.filter((item) => {
+      for (let key in petStatus) {
+        if (item[key] !== petStatus[key]) {
+          return false;
+        }
+      }
+      return true;
+    });
+    setFiltered(results);
+  };
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((json) => {
-        setPets(json);
-
-        if (petStatus.status === 'Found') {
-          const filteredFound = json.filter((foundPet) =>
-            foundPet.status.includes('Found')
-          );
-          setFiltered(filteredFound);
-        } else if (petStatus.status === 'Lost') {
-          const filteredFound = json.filter((lostPet) =>
-            lostPet.status.includes('Lost')
-          );
-          setFiltered(filteredFound);
-        } else if (petStatus.status === '') {
-          setFiltered(json);
-        }
-      })
-      .catch(console.error);
-  }, [url, petStatus.status]);
+    filterResults();
+    console.log(petStatus);
+  }, [petStatus]);
 
   if (!pets) {
     return <p>Loading pets looking for their home...</p>;
@@ -40,23 +37,36 @@ function PetDashboard({ petStatus }) {
 
   return (
     <div>
-      <Filter />
-      <hr />
-      <section className={styles.petsContainer}>
-        {filtered.map((pet) => (
-          <div className={styles.petCard} key={pet.id}>
-            <Link to={`/pets/${pet.id}`} className={styles.link}>
-              <div className={styles.petImage}>
-                <img src={pet.photo} alt={pet.name} />
-              </div>
-              <div className={styles.cardTitle}>
-                <h3 className={styles.name}>{pet.name}</h3>
-                <h3 className={styles.status}>{pet.status}</h3>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </section>
+      <Filter petStatus={petStatus} setPetStatus={setPetStatus} />
+      <motion.div layout className={styles.petsContainer}>
+        <AnimatePresence>
+          {filtered.map((pet) => (
+            <motion.div
+              layout
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              exit={{ opacity: 0 }}
+              className={styles.petCard}
+              key={pet.id}>
+              <Link to={`/pets/${pet.id}`} className={styles.link}>
+                <div className={styles.petImage}>
+                  <img src={pet.photo} alt={pet.name} />
+                </div>
+                <div className={styles.cardTitle}>
+                  <h3 className={styles.name}>{pet.name}</h3>
+                  <h3 className={styles.status}>{pet.status}</h3>
+                </div>
+                <div>
+                  <p>{pet.gender}</p>
+                  <p>{pet.type}</p>
+                  <p>{pet.location}</p>
+                  <p>{pet.reported_time}</p>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 }

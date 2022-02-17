@@ -1,12 +1,155 @@
 .profileContainer {
-  padding: 2rem;
-  height: 100vh;
+  padding: 2rem 0;
+  padding-bottom: 10rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .profileContainer h2 {
   margin-bottom: 2rem;
   font-size: 1.5rem;
 }
+.profileContainer h2 span {
+  color: #854ad0;
+}
+/*! EDITING MODE */
 .editingMode {
+  /* display: flex;
+  flex-direction: column; */
+  width: 400px;
+}
+.editingMode label {
+  margin-bottom: 0.2rem;
+}
+.editingMode input {
+  margin-bottom: 1rem;
+  width: 100%;
+  padding: 0.2rem;
+}
+
+/*? END EDITING MODE */
+
+/*! BUTTONS */
+.buttonDiv {
   display: flex;
-  flex-direction: column;
+  margin-top: 4rem;
+}
+.editButtonsDiv {
+  display: flex;
+  margin-top: 4rem;
+}
+.buttonDiv button {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+.editButtonsDiv button {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+/* My Reported Pets Button */
+.buttonDiv button:nth-child(1) {
+  border: 1px solid #8a50d4;
+  color: #8a50d4;
+}
+.buttonDiv button:nth-child(1):hover {
+  border: 1px solid #8a50d4;
+  color: #fff;
+  background-color: #8a50d4;
+}
+/* Cancel Changes Button */
+.editButtonsDiv button:nth-child(1) {
+  border: 1px solid #8a50d4;
+  color: #8a50d4;
+}
+.editButtonsDiv button:nth-child(1):hover {
+  border: 1px solid #8a50d4;
+  color: #fff;
+  background-color: #8a50d4;
+}
+/* Logout Button */
+.buttonDiv button:nth-child(2) {
+  border: 1px solid #44cb82;
+  color: #44cb82;
+}
+.buttonDiv button:nth-child(2):hover {
+  border: 1px solid #44cb82;
+  color: #fff;
+  background-color: #44cb82;
+}
+/* Save Changes Button */
+.editButtonsDiv button:nth-child(2) {
+  border: 1px solid #44cb82;
+  color: #44cb82;
+}
+.editButtonsDiv button:nth-child(2):hover {
+  border: 1px solid #44cb82;
+  color: #fff;
+  background-color: #44cb82;
+}
+/* Edit Account Button */
+.buttonDiv button:nth-child(3) {
+  border: 1px solid #bf733b;
+  color: #bf733b;
+}
+.buttonDiv button:nth-child(3):hover {
+  border: 1px solid #bf733b;
+  color: #fff;
+  background-color: #bf733b;
+}
+/* Delete Account Button */
+.editButtonsDiv button:nth-child(3) {
+  border: 1px solid #e74040;
+  color: #e74040;
+}
+.editButtonsDiv button:nth-child(3):hover {
+  border: 1px solid #e74040;
+  color: #fff;
+  background-color: #e74040;
+}
+/*? END BUTTONS */
+
+/*! USERS INFO */
+.usersInfo ul li {
+  list-style-type: none;
+  margin-bottom: 1rem;
+}
+.usersInfo ul li span {
+  text-decoration: underline;
+}
+/*? END USERS INFO */
+
+@media (max-width: 500px) {
+  .profileContainer {
+    padding: 2rem 0;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .buttonDiv {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 1rem;
+    margin-top: auto;
+  }
+  .buttonDiv button {
+    margin: 0.5rem 0.5rem;
+    padding: 1rem 1rem;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+  }
 }

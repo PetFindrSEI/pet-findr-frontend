@@ -53,7 +53,7 @@ function PetDetails(props) {
 					<li>Last Location: {pet.location}</li>
 					<li>Date: {moment(pet.reported_time).format('LLL')}</li>
 				</ul>
-				<button className={styles.contact}>Contact</button>
+        <button className={styles.contact}>Contact</button>
 			</div>
 		</div>
 	);

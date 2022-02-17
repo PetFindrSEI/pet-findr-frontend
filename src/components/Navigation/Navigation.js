@@ -28,6 +28,36 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
     setNavbarOpen(false);
   }, [urlLocation]);
 
+  // Variants for Framer Motion
+  const staggerVariants = {
+    open: {
+      transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+      y: 0,
+    },
+    closed: {
+      transition: { staggerChildren: 0.05, staggerDirection: -1 },
+      y: -15,
+    },
+  };
+  const itemVariants = {
+    open: {
+      x: 0,
+      height: 'fit-content',
+      opacity: 1,
+      transition: {
+        x: { stiffness: 500},
+      },
+    },
+    closed: {
+      x: -1000,
+      height: 0,
+      opacity: 0,
+      transition: {
+        x: { stiffness: 500 },
+      },
+    },
+  };
+
   return (
     <div>
       {/* Navigation bar */}
@@ -61,11 +91,17 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
         </div>
       </nav>
       {/* List of Links when menu is toggled */}
-      <ul
-        style={{ display: navbarOpen ? 'flex' : 'none' }}
+      <motion.ul
+        // style={{ display: navbarOpen ? 'flex' : 'none' }}
+        initial={false}
+        animate={navbarOpen ? 'open' : 'closed'}
+        variants={staggerVariants}
         className={styles.menuNav}>
         {/* Home Link */}
-        <motion.li whileHover={{ scale: 1.05 }}>
+        <motion.li
+          initial={false}
+          variants={itemVariants}
+          whileHover={{ scale: 1.05 }}>
           <Link to='/'>
             <AiOutlineHome className={styles.icon} />
             Home
@@ -74,11 +110,14 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
 
         <span></span>
         {/* Home Link */}
-        <motion.li whileHover={{ scale: 1.05 }}>
+        <motion.li
+          initial={false}
+          variants={itemVariants}
+          whileHover={{ scale: 1.05 }}>
           <Link
             to='/dashboard'
             onClick={() => {
-              setPetStatus({ status: '' });
+              setPetStatus({});
             }}>
             <GoDashboard className={styles.icon} />
             Dashboard
@@ -87,9 +126,12 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
 
         <span></span>
         {/* Found Pets Link */}
-        <motion.li whileHover={{ scale: 1.05 }}>
+        <motion.li
+          initial={false}
+          variants={itemVariants}
+          whileHover={{ scale: 1.05 }}>
           <Link
-            to={`/dashboard/found`}
+            to={`/dashboard`}
             onClick={() => {
               setPetStatus({ status: 'Found' });
             }}>
@@ -100,9 +142,12 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
 
         <span></span>
         {/* Lost Pets Link */}
-        <motion.li whileHover={{ scale: 1.05 }}>
+        <motion.li
+          initial={false}
+          variants={itemVariants}
+          whileHover={{ scale: 1.05 }}>
           <Link
-            to={`/dashboard/lost`}
+            to={`/dashboard`}
             onClick={() => {
               setPetStatus({ status: 'Lost' });
             }}>
@@ -113,7 +158,10 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
 
         <span></span>
         {/* How It Works Link */}
-        <motion.li whileHover={{ scale: 1.05 }}>
+        <motion.li
+          initial={false}
+          variants={itemVariants}
+          whileHover={{ scale: 1.05 }}>
           <Link to='/howitworks'>
             <FiHelpCircle className={styles.icon} />
             How it Works?
@@ -122,8 +170,11 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
 
         <span></span>
         {/* Report a Pet Link */}
-        <motion.li whileHover={{ scale: 1.05 }}>
-          <Link to='/'>
+        <motion.li
+          initial={false}
+          variants={itemVariants}
+          whileHover={{ scale: 1.05 }}>
+          <Link to='/report-pet'>
             <GoReport className={styles.icon} />
             Report a Pet
           </Link>
@@ -131,7 +182,10 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
 
         <span></span>
         {loggedIn ? (
-          <motion.li whileHover={{ scale: 1.05 }}>
+          <motion.li
+            initial={false}
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}>
             <Link to='/' onClick={handleLogout}>
               <FiLogOut className={styles.icon} />
               Logout
@@ -140,7 +194,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
         ) : (
           ''
         )}
-      </ul>
+      </motion.ul>
     </div>
   );
 }
