@@ -30,10 +30,6 @@ main {
   color: #ec8b3038;
 }
 
-.motion_nav {
-  margin-top: 1rem;
-}
-
 .motion_nav button {
   margin-right: 1rem;
   min-width: 5rem;

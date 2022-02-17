@@ -127,7 +127,7 @@ function App() {
         />
       </header>
       <main>
-        <ReportPet locationReportPet={locationReportPet} />
+        <ReportPet locationReportPet={locationReportPet} loggedIn={loggedIn}/>
         <Routes>
           <Route
             path='/'

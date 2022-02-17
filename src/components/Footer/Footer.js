@@ -24,7 +24,7 @@ function Footer({ setPetStatus }) {
               </Link>
             </li>
             <li>
-              <Link to='/'>Learn More</Link>
+              <Link to='/howitworks'>Learn More</Link>
             </li>
           </ul>
         </section>

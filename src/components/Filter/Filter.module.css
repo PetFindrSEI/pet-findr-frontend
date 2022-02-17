@@ -3,11 +3,11 @@
   margin: 1rem auto;
   margin-top: 0;
   padding: 1rem 2rem;
-  border-bottom: 1px solid rgb(212, 212, 212);
   background-color: rgba(255, 255, 255, 0);
   backdrop-filter: blur(20px);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+/* "Filter Search" */
 .filterContainer h3 {
   cursor: pointer;
   display: flex;
@@ -17,18 +17,19 @@
   margin-left: 1rem;
 }
 
+/* All div's of search parameters */
 .filterContainer div {
   margin-left: 0.8rem;
 }
-
+/* All parameter titles */
 .filterContainer p {
   margin-left: -0.8rem;
 }
-
+/* All buttons */
 .filterContainer button {
   margin: 0.5rem -0.8rem;
 }
-
+/* Clear Filters BUtton */
 .clearFilters {
   margin-top: 1rem;
 }

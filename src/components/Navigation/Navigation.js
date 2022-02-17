@@ -123,7 +123,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
         <span></span>
         {/* Report a Pet Link */}
         <motion.li whileHover={{ scale: 1.05 }}>
-          <Link to='/'>
+          <Link to='/report-pet'>
             <GoReport className={styles.icon} />
             Report a Pet
           </Link>

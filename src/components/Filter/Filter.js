@@ -5,26 +5,43 @@ import { BsChevronDown } from 'react-icons/bs';
 import { BsChevronUp } from 'react-icons/bs';
 
 function Filter({ petStatus, setPetStatus }) {
-  const [menu, setMenu] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const variants = {
-    open: { opacity: 1, y: 0, display: 'block' },
-    closed: { opacity: 0, y: '-20px', display: 'none' },
+    open: {
+      x: 0,
+      height: 'fit-content',
+      opacity: 1,
+      transition: {
+        y: { stiffness: 1000, velocity: -100 },
+      },
+      marginTop: '1rem',
+    },
+    closed: {
+      x: -1000,
+      height: 0,
+      opacity: 0,
+      transition: {
+        y: { stiffness: 1000 },
+      },
+      marginTop: '0rem',
+    },
   };
 
   return (
     <div>
       <div className={styles.filterContainer}>
-        <h3 onClick={() => setMenu(!menu)}>
+        <h3 onClick={() => setIsOpen(!isOpen)}>
           Filter Search{' '}
-          {menu ? (
+          {isOpen ? (
             <BsChevronDown className={styles.icon} />
           ) : (
             <BsChevronUp className={styles.icon} />
           )}
         </h3>
         <motion.nav
-          animate={!menu ? 'open' : 'closed'}
+          initial={false}
+          animate={!isOpen ? 'open' : 'closed'}
           variants={variants}
           className='motion_nav'>
           <div>
