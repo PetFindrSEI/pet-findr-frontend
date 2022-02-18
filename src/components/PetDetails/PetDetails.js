@@ -1,5 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
+import {
+	FacebookShareButton,
+	TwitterShareButton,
+	EmailShareButton,
+	WhatsappShareButton,
+} from 'react-share';
+import {
+	FacebookIcon,
+	TwitterIcon,
+	EmailIcon,
+	WhatsappIcon,
+} from 'react-share';
 import styles from './PetDetails.module.css';
 import moment from 'moment';
 import Modal from 'react-modal';
@@ -14,6 +26,7 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 	// const [remove, setRemove] = useState();
 	const url = `https://petfindr-api.herokuapp.com/pets/${id}`;
 	const navigate = useNavigate();
+
 
 	async function getPet() {
 		try {
@@ -143,6 +156,18 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 							</div>
 						</div>
 					</Modal>
+					<FacebookShareButton url={`https://petfindr.netlify.app/pets/${id}`}>
+						<FacebookIcon size={32} round />
+					</FacebookShareButton>
+					<TwitterShareButton url={`https://petfindr.netlify.app/pets/${id}`}>
+						<TwitterIcon size={32} round />
+					</TwitterShareButton>
+					{/* <EmailShareButton url={`https://petfindr.netlify.app/pets/${id}`}>
+						<EmailIcon />
+					</EmailShareButton>
+					<WhatsappShareButton url={`https://petfindr.netlify.app/pets/${id}`}>
+						<WhatsappIcon />
+					</WhatsappShareButton> */}
 				</div>
 			</div>
 		</div>
