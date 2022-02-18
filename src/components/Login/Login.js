@@ -1,17 +1,20 @@
+// Dependencies
 import React, { useState } from 'react';
-import styles from './Login.module.css';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+// Styles
+import styles from './Login.module.css';
+// API URL
 import API_URL from '../../apiUrl';
 
 function Login({ handleSetLoggedIn }) {
+  const [errMsg, setErrMsg] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
     password: '',
   });
-  const [errMsg, setErrMsg] = useState(false);
 
+  // Login the registered user
   const loginUser = async (e) => {
     e.preventDefault();
     try {
@@ -29,6 +32,9 @@ function Login({ handleSetLoggedIn }) {
       }
       if (response.status !== 200) {
         setErrMsg(true);
+        setTimeout(() => {
+          setErrMsg(false);
+        }, 2000);
       }
     } catch (error) {
       setErrMsg(true);

@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+// Dependencies
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+// Styles
 import styles from './Register.module.css';
-import axios from 'axios';
+// API URL
 import API_URL from '../../apiUrl';
 
 function Register(props) {
+  const passwordMatch = `Something's not adding up...`;
+  const [success, setSuccess] = useState(false);
+  const [errMsg, setErrMsg] = useState(false);
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     username: '',
@@ -12,10 +17,8 @@ function Register(props) {
     password: '',
     re_password: '',
   });
-  const [errMsg, setErrMsg] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const passwordMatch = 'The passwords do not match';
 
+  // Register a new user
   const createNewUser = async (e) => {
     e.preventDefault();
     try {
@@ -74,7 +77,6 @@ function Register(props) {
             value={newUser.username}
             onChange={handleChange}
           />
-
           <label htmlFor='email'>Email</label>
           <input
             type='text'
@@ -85,6 +87,7 @@ function Register(props) {
             onChange={handleChange}
           />
           <label htmlFor='password'>Password</label>
+          <small>Must not contain phrasing from username or email</small>
           <input
             type='password'
             id='password'
@@ -109,7 +112,9 @@ function Register(props) {
           <button>Register</button>
         </form>
         {success ? (
-          <p>Successfully registered! Redirecting you to login.</p>
+          <p className={styles.successMessage}>
+            Successfully registered! Redirecting you to login.
+          </p>
         ) : (
           ''
         )}

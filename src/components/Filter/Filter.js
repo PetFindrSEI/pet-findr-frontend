@@ -1,8 +1,11 @@
+// Dependencies
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+// Styling
 import styles from './Filter.module.css';
 import { BsChevronDown } from 'react-icons/bs';
 import { BsChevronUp } from 'react-icons/bs';
+// Framer Motion
+import { motion } from 'framer-motion';
 
 function Filter({ petStatus, setPetStatus }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +14,7 @@ function Filter({ petStatus, setPetStatus }) {
     return setIsOpen(false);
   }, []);
 
+  // Framer Motion variants
   const variants = {
     open: {
       x: 0,
@@ -26,7 +30,7 @@ function Filter({ petStatus, setPetStatus }) {
       height: 0,
       opacity: 0,
       transition: {
-        y: { stiffness: 1000},
+        y: { stiffness: 1000 },
       },
       marginTop: '0rem',
     },
@@ -54,7 +58,6 @@ function Filter({ petStatus, setPetStatus }) {
               className={petStatus.status === 'Lost' ? 'active' : ''}
               onClick={() => {
                 setPetStatus({ ...petStatus, status: 'Lost' });
-                console.log(petStatus.status);
               }}>
               Lost
             </button>

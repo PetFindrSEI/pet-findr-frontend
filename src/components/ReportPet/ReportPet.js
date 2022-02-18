@@ -1,9 +1,11 @@
 // Dependencies
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-// Styles/Icons
-import { motion } from 'framer-motion';
+// Styles
 import styles from './ReportPet.module.css';
+// Framer Motion
+import { motion } from 'framer-motion';
+// Icons
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 
 function ReportPet({ locationReportPet, loggedIn }) {

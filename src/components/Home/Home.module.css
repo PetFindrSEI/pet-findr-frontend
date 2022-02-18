@@ -1,25 +1,45 @@
 .homeContainer {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
 }
 /*! Main Hero Section */
 .heroSection {
   height: 65vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   background-image: url(../../assets/heroImg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 /* PetFindr - Lost or Found... Text */
 .heroText {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   width: 100%;
   background-color: #854ad0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   padding: 2rem 0;
   margin: 0 auto;
@@ -29,6 +49,8 @@
   font-size: 4rem;
   font-weight: 600;
   margin: 0 auto;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 .heroSection h3 {
@@ -36,21 +58,36 @@
   font-size: 1.25rem;
   font-weight: 400;
   margin: 0 auto;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
 /* Login Box */
 .heroInfoBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   margin: auto;
   padding: 2rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   width: 350px;
   border-radius: 10px;
   background-color: white;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+    rgba(0, 0, 0, 0.23) 0px 3px 6px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 .heroInfoBox h4 {
@@ -84,8 +121,15 @@
   height: 50vh;
   width: 100%;
   max-width: 800px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin: 0 auto;
 }
@@ -94,15 +138,20 @@
   width: 80%;
   max-width: 600px;
   height: 50vh;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 .foundPetTextBox {
   z-index: 1;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   width: 300px;
   background-color: #14022b;
   padding: 3rem 2rem;
   border-radius: 10px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+    rgba(0, 0, 0, 0.23) 0px 3px 6px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   margin-left: auto;
   margin-right: 1rem;
@@ -118,8 +167,15 @@
   height: 50vh;
   width: 100%;
   max-width: 800px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
   flex-direction: row-reverse;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin: 0 auto;
   margin-bottom: 2rem;
@@ -129,15 +185,20 @@
   width: 80%;
   max-width: 600px;
   height: 50vh;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 .lostPetTextBox {
   z-index: 1;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   width: 300px;
   background-color: #14022b;
   padding: 3rem 2rem;
   border-radius: 10px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+    rgba(0, 0, 0, 0.23) 0px 3px 6px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   margin-right: auto;
   margin-left: 1rem;
@@ -151,8 +212,9 @@
 /* Paw Period */
 .pawPeriod {
   font-size: 1rem;
+  -webkit-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
   transform: rotate(20deg);
-  /* color: #85BF3B; */
   color: white;
 }
 

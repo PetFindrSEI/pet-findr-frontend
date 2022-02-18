@@ -1,6 +1,9 @@
 .loginContainer {
-  /* height: 100vh; */
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 .loginContainer svg {
@@ -9,20 +12,30 @@
 }
 /* Login Box */
 .loginBox {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   width: 100%;
   max-width: 500px;
   background-color: rgba(255, 255, 255, 0.96);
   border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   padding: 2rem;
-  margin: 2rem 2rem;
-  margin-bottom: 12rem;
+  margin: 2rem;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+    rgba(0, 0, 0, 0.23) 0px 3px 6px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  border: 1px solid #c4c4c4;
 }
 /* Welcome Back Text */
 .loginBox h2 {
@@ -31,7 +44,12 @@
 }
 /* Login Form */
 .loginForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   margin: 1rem auto;
   margin-bottom: 2rem;
@@ -47,6 +65,8 @@
   border: none;
   border: 1px solid #c4c4c4;
   border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 .loginForm input:hover {
@@ -63,6 +83,8 @@
   border-radius: 5px;
   cursor: pointer;
   color: #8dc941;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
   font-size: 1.5rem;
   font-weight: 400;

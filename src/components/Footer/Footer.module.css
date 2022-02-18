@@ -3,47 +3,62 @@
   width: 100%;
   padding: 1rem;
   background-color: #854ad0;
+  color: white;
 }
+/* Text on Footer Container */
 .footerTextArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
   justify-content: space-evenly;
   max-width: 800px;
   margin: 0 auto;
   padding-bottom: 4rem;
 }
-.footerSiteInfo {
-  color: white;
-}
-.footerCreatorInfo {
-  color: white;
-}
+/* Creators Section */
 .creators {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 200px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
+.creators .name {
+  font-weight: 500;
+}
+
+/* Headers on Footer */
 .footerTextArea p {
   font-size: 1rem;
   font-weight: 500;
 }
+/* Each List Item */
 .footerTextArea section ul li {
   list-style-type: none;
   font-weight: 300;
   font-size: 0.8rem;
   margin: 0.4rem auto;
 }
+/* Links */
 .footerCreatorInfo a,
 .footerSiteInfo a {
   text-decoration: none;
   color: white;
 }
+/* Link Hover */
 .footerCreatorInfo a:hover,
 .footerSiteInfo a:hover {
   text-decoration: underline;
 }
-
+/* Deployed with Netlify and Heroku */
 .footerContainer span {
   display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin: 0 auto;
   color: rgb(207, 207, 207);
