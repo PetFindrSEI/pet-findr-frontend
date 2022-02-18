@@ -76,7 +76,7 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 				</div>
 				<h3>Pet Descriptors</h3>
 				<hr />
-				<ul>
+				<ul className={styles.listEl}>
 					<li>
 						Size: <p className={styles.text}>{pet.size}</p>
 					</li>
@@ -96,7 +96,7 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 				<br />
 				<h3>Location Info</h3>
 				<hr />
-				<ul>
+				<ul className={styles.listEl}>
 					<li>
 						Last Location: <p className={styles.text}>{pet.location}</p>
 					</li>
@@ -199,6 +199,23 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 							/>
 						</WhatsappShareButton>
 					</div>
+					{/* {success ? (
+						<motion.input
+							type='submit'
+							value='Pet Reported!'
+							variants={successful}
+							initial='start'
+							animate='end'
+							layout
+						/>
+					) : (
+						<motion.input
+							type='submit'
+							value='Report Pet'
+							whileHover={{ backgroundColor: '#D29568' }}
+							whileTap={{ backgroundColor: '#bb6b32' }}
+						/>
+					)} */}
 				</div>
 			</div>
 		</div>
