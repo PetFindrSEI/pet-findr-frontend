@@ -15,12 +15,8 @@
     margin: 1rem auto;
 }
 .name {
-    display: flex;
-    background-color: #BBF2C9;
-    border-radius: 50px;
-    justify-content: center;
-    width: 25%;
-    padding: .5rem;
+    padding: .25rem;
+    font-size: 30px;
 }
 .status {
     color: #37B379;
@@ -43,16 +39,16 @@
     display: flex;
     justify-content: center;
     height: fit-content;
-    width: 40%;
+    width: 35%;
     color: white;
     background-color: #bf733b;
     border: none;
     border-radius: 10px;
-    padding: 1rem 0;
-    font-size: 1.5rem;
+    padding: .9rem 0;
+    font-size: 1.25rem;
     font-weight: 500;
     cursor: pointer;
-    margin: 1rem;
+    margin: 2rem 1.2rem 1rem 1.2rem;
 }
 .header {
     display: flex;
@@ -71,9 +67,14 @@ hr {
     justify-content: center;
     margin: 1rem;
 }
-/* .modalItem {
-    border: 1px solid red;
-} */
 .subhead {
-    margin: .5rem 0rem;
+    margin: 1rem 0rem .2rem 0rem;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+.popUp {
+    display: flex;
+    flex-direction: column;
 }
