@@ -10,12 +10,13 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-  -ms-flex-pack: space-evenly;
-  justify-content: space-evenly;
+  -webkit-box-pack: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
   max-width: 800px;
   margin: 0 auto;
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
+  padding-top: .5rem;
 }
 /* Creators Section */
 .creators {

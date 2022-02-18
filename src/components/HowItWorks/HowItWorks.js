@@ -3,33 +3,43 @@ import styles from './HowItWorks.module.css';
 
 function HowItWorks(props) {
   return (
-    <div className={styles.card}>
-      <h2>How it works!</h2>
-      <h3 className={styles.subTitle}>Create a free listing</h3>
-      <p className={styles.description}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-        dolorum, distinctio quas eius quo excepturi omnis quisquam, quibusdam
-        impedit a dignissimos nostrum modi ducimus, fuga alias assumenda rem
-        illum dolores.
-      </p>
-      <br />
-      <h3 className={styles.subTitle}>Get in contact</h3>
-      <p className={styles.description}>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos neque
-        sint alias at molestias cupiditate obcaecati. Facilis cumque perferendis
-        quidem molestiae, dignissimos iste quibusdam ipsam temporibus et odit
-        officia architecto?
-      </p>
-      <br />
-      <h3 className={styles.subTitle}>Pet Reunion</h3>
-      <p className={styles.description}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia iste
-        quaerat voluptatibus veniam fugiat iusto voluptatum quis iure vel ipsam
-        laudantium consequuntur corporis doloremque, porro obcaecati, nesciunt
-        expedita sequi aliquid.
-      </p>
-    </div>
-  );
+		<div className={styles.container}>
+			<div className={styles.card}>
+				<h2 className={styles.title}>How it works!</h2>
+				<h3 className={styles.subTitle}>Create a free listing</h3>
+				<p className={styles.description}>
+					Oh no! Otto just bolted out of the backdoor and you can't seem to find
+					him! Don't worry. You can easily log in to PetFindr and report Otto as
+					'Lost', and with the help of your community, other users will see your
+					post and keep an eye out for him! Once a user has found Otto, they can
+					easily contact you from the details page.
+				</p>
+				<br />
+				<p className={styles.description}>
+					On the other hand, if you happen to found a lost pet, you can
+					alternatively report a pet as 'Found' and share what information you
+					have so, soon, you can reunite the furry friend with their owner!
+				</p>
+				<br />
+				<h3 className={styles.subTitle}>Get in contact</h3>
+				<p className={styles.description}>
+					Each reported pet, whether lost or found, has a contact button which
+					will show the contact information of the user that reported the pet.
+					You can pick up the phone and call them, or shoot them an email if you
+					have found their lost pet!
+				</p>
+				<br />
+				<h3 className={styles.subTitle}>Pet reunion</h3>
+				<p className={styles.description}>
+					When reuniting a pet with their owner, decide on a mutually agreed
+					upon time and location. Deliver the pet in a safe, pet-friendly manner
+					and reunite them with their owner! We ask that you do not hold any
+					animals hostage and/or demand a random or a finders fee from the owner
+					upon reunion.
+				</p>
+			</div>
+		</div>
+	);
 }
 
 export default HowItWorks;
