@@ -15,6 +15,8 @@ import moment from 'moment';
 import Modal from 'react-modal';
 import email from '../../assets/email.png'
 import whatsapp from '../../assets/whatsapp.png'
+import { motion } from 'framer-motion';
+
 
 // Modal error message
 Modal.setAppElement('#root');
@@ -26,7 +28,7 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 	// const [remove, setRemove] = useState();
 	const url = `https://petfindr-api.herokuapp.com/pets/${id}`;
 	const navigate = useNavigate();
-
+	const [success, setSuccess] = useState(false);
 
 	async function getPet() {
 		try {
@@ -52,9 +54,8 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 		});
 		if (response.status === 204) {
 			setRefreshingPet(true);
-			setTimeout(() => {
-				navigate(`/dashboard`);
-			}, 1000);
+			setSuccess(true);
+			navigate(`/dashboard`);
 		} else {
 			console.error();
 		}
@@ -63,6 +64,12 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 	if (!pet) {
 		return <p>Loading pet details...</p>;
 	}
+
+	// Framer Motion Variants
+	const successful = {
+		start: { y: '2rem', backgroundColor: '#13B279', opacity: 0 },
+		end: { y: 0, backgroundColor: '#13B279', opacity: 1 },
+	};
 
 	return (
 		<div className={styles.detailsContainer}>
@@ -110,11 +117,11 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 				<div className={styles.buttons}>
 					<button
 						onClick={() => setModalIsOpen(true)}
-						className={styles.contact}>
+						className={styles.contactBtn}>
 						Contact
 					</button>
 					{loggedIn && pet.owner_email === userInfo.email ? (
-						<button onClick={() => deletePet()} className={styles.contact}>
+						<button onClick={() => deletePet()} className={styles.deleteBtn}>
 							Delete
 						</button>
 					) : (
@@ -149,13 +156,6 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 								padding: '20px',
 								boxShadow:
 									'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px',
-								// shadowColor: '#005',
-								// shadowOffset: {
-								// 	width: 0,
-								// 	height: 10,
-								// },
-								// shadowOpacity: 0.12,
-								// shadowRadius: 60,
 							},
 						}}>
 						<div className={styles.popUp}>
@@ -199,23 +199,7 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 							/>
 						</WhatsappShareButton>
 					</div>
-					{/* {success ? (
-						<motion.input
-							type='submit'
-							value='Pet Reported!'
-							variants={successful}
-							initial='start'
-							animate='end'
-							layout
-						/>
-					) : (
-						<motion.input
-							type='submit'
-							value='Report Pet'
-							whileHover={{ backgroundColor: '#D29568' }}
-							whileTap={{ backgroundColor: '#bb6b32' }}
-						/>
-					)} */}
+					
 				</div>
 			</div>
 		</div>

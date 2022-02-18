@@ -59,6 +59,46 @@ h5 {
 }
 
 
+.contactBtn {
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    width: 35%;
+    color: white;
+    background-color: #8dc941;
+    border: none;
+    border-radius: 10px;
+    padding: .9rem 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 2rem 1.2rem 1rem 1.2rem;
+}
+.contactBtn:hover {
+    background-color: white;
+    border: 1px solid #8dc941;
+    color: #8dc941;
+}
+.deleteBtn {
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    width: 35%;
+    color: white;
+    background-color: #fa6565;
+    border: none;
+    border-radius: 10px;
+    padding: .9rem 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 2rem 1.2rem 1rem 1.2rem;
+}
+.deleteBtn:hover {
+    background-color: white;
+    border: 1px solid #fa6565;
+    color: #fa6565;
+}
 .contact {
     display: flex;
     justify-content: center;
@@ -73,6 +113,11 @@ h5 {
     font-weight: 500;
     cursor: pointer;
     margin: 2rem 1.2rem 1rem 1.2rem;
+}
+.contact:hover {
+    background-color: white;
+    border: 1px solid #bf733b;
+    color: #bf733b;
 }
 .header {
     display: flex;
