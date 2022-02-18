@@ -144,8 +144,8 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 							content: {
 								position: 'absolute',
 								top: '20%',
-								left: '28%',
-								right: '28%',
+								left: '25%',
+								right: '25%',
 								bottom: '42%',
 								border: '1px solid #ccc',
 								background: '#fff',
