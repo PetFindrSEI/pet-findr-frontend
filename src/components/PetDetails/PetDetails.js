@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
+import {
+	FacebookShareButton,
+	TwitterShareButton,
+	EmailShareButton,
+	WhatsappShareButton,
+} from 'react-share';
+import {
+	FacebookIcon,
+	TwitterIcon,
+	EmailIcon,
+	WhatsappIcon,
+} from 'react-share';
 import styles from './PetDetails.module.css';
 import moment from 'moment';
 import Modal from 'react-modal';
 // import API_URL from './apiURL';
 // Modal error message
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 
 function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 	const [pet, setPet] = useState(null);
@@ -14,6 +26,7 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 	// const [remove, setRemove] = useState();
 	const url = `https://petfindr-api.herokuapp.com/pets/${id}`;
 	const navigate = useNavigate();
+
 
 	async function getPet() {
 		try {
@@ -83,7 +96,7 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 						className={styles.contact}>
 						Contact
 					</button>
-					{(loggedIn && pet.owner_email === userInfo.email) ? (
+					{loggedIn && pet.owner_email === userInfo.email ? (
 						<button onClick={() => deletePet()} className={styles.contact}>
 							Delete
 						</button>
@@ -107,29 +120,54 @@ function PetDetails({ refreshingPet, setRefreshingPet, userInfo, loggedIn }) {
 							content: {
 								position: 'absolute',
 								top: '20%',
-								left: '30%',
-								right: '30%',
-								bottom: '20%',
+								left: '28%',
+								right: '28%',
+								bottom: '42%',
 								border: '1px solid #ccc',
 								background: '#fff',
 								overflow: 'auto',
 								WebkitOverflowScrolling: 'touch',
-								borderRadius: '4px',
+								borderRadius: '10px',
 								outline: 'none',
 								padding: '20px',
+								boxShadow:
+									'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px',
+								// shadowColor: '#005',
+								// shadowOffset: {
+								// 	width: 0,
+								// 	height: 10,
+								// },
+								// shadowOpacity: 0.12,
+								// shadowRadius: 60,
 							},
 						}}>
-						<h2 className={styles.modalTitle}>Contact Info</h2>
-						<h4 className={styles.subhead}>Phone Number: </h4>
-						<p className={styles.modalItem}>{pet.phone_number}</p>
-						<h4 className={styles.subhead}>Email: </h4>
-						<p className={styles.modalItem}>{pet.owner_email}</p>
-						<button
-							className={styles.contact}
-							onClick={() => setModalIsOpen(false)}>
-							Close
-						</button>
+						<div className={styles.popUp}>
+							<h2 className={styles.modalTitle}>Contact Info</h2>
+							<h4 className={styles.subhead}>Phone Number: </h4>
+							<p className={styles.modalItem}>{pet.phone_number}</p>
+							<h4 className={styles.subhead}>Email: </h4>
+							<p className={styles.modalItem}>{pet.owner_email}</p>
+							<div className={styles.buttons}>
+								<button
+									className={styles.contact}
+									onClick={() => setModalIsOpen(false)}>
+									Close
+								</button>
+							</div>
+						</div>
 					</Modal>
+					<FacebookShareButton url={`https://petfindr.netlify.app/pets/${id}`}>
+						<FacebookIcon size={32} round />
+					</FacebookShareButton>
+					<TwitterShareButton url={`https://petfindr.netlify.app/pets/${id}`}>
+						<TwitterIcon size={32} round />
+					</TwitterShareButton>
+					{/* <EmailShareButton url={`https://petfindr.netlify.app/pets/${id}`}>
+						<EmailIcon />
+					</EmailShareButton>
+					<WhatsappShareButton url={`https://petfindr.netlify.app/pets/${id}`}>
+						<WhatsappIcon />
+					</WhatsappShareButton> */}
 				</div>
 			</div>
 		</div>

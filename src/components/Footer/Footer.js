@@ -1,6 +1,8 @@
+// Dependencies
 import React from 'react';
-import styles from './Footer.module.css';
 import { Link } from 'react-router-dom';
+// Styles
+import styles from './Footer.module.css';
 
 function Footer({ setPetStatus }) {
   return (
@@ -32,7 +34,7 @@ function Footer({ setPetStatus }) {
           <p>Creators</p>
           <div className={styles.creators}>
             <ul>
-              <li>Melissa Morgan</li>
+              <li className={styles.name}>Melissa Morgan</li>
               <li>
                 <a
                   href='https://www.linkedin.com/in/melissa-morgan/'
@@ -51,7 +53,7 @@ function Footer({ setPetStatus }) {
               </li>
             </ul>
             <ul>
-              <li>Landon Spell</li>
+              <li className={styles.name}>Landon Spell</li>
               <li>
                 <a
                   href='https://www.linkedin.com/in/landon-spell/'

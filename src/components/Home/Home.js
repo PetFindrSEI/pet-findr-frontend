@@ -1,16 +1,20 @@
+// Dependencies
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+// Styles
 import styles from './Home.module.css';
 import { FaPaw } from 'react-icons/fa';
-
+// Framer Motion
 import { motion } from 'framer-motion';
-import FoundPetSlider from '../PetSlider/FoundPetSlider';
+// Components
 import foundPetImage from '../../assets/foundPetImage.jpg';
 import lostPetImage from '../../assets/lostPetImage.jpg';
+import FoundPetSlider from '../PetSlider/FoundPetSlider';
 import LostPetSlider from '../PetSlider/LostPetSlider';
 
 function Home({ loggedIn, setPetStatus }) {
   const navigate = useNavigate();
+
   return (
     <div className={styles.homeContainer}>
       <section className={styles.heroSection}>

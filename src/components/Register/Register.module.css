@@ -1,5 +1,9 @@
 .registerContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 .registerContainer svg {
@@ -8,18 +12,30 @@
 }
 /* Register Box */
 .registerBox {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   width: 100%;
   max-width: 500px;
   background-color: rgba(255, 255, 255, 0.96);
   border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   padding: 2rem;
   margin: 2rem 2rem;
   margin-bottom: 8rem;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+    rgba(0, 0, 0, 0.23) 0px 3px 6px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   border: 1px solid #c4c4c4;
 }
@@ -31,10 +47,15 @@
 
 /* Register Form */
 .registerForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   margin: 1rem auto;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   width: 100%;
 }
 .registerForm label {
@@ -47,6 +68,8 @@
   border: none;
   border: 1px solid #c4c4c4;
   border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 .registerForm input:hover {
@@ -63,6 +86,8 @@
   border-radius: 5px;
   cursor: pointer;
   color: #854ad0;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
   font-size: 1.5rem;
   font-weight: 400;
@@ -70,6 +95,13 @@
 .registerForm button:hover {
   background-color: #854ad0;
   color: white;
+}
+
+/* Small text */
+.registerForm small {
+  color: rgb(124, 124, 124);
+  margin-bottom: 0.3rem;
+  font-size: 0.65rem;
 }
 
 /* Login Link */
@@ -83,4 +115,10 @@
 /* Password Match */
 .passwordMatch {
   color: #f68f8f;
+}
+
+/* Success Message */
+.successMessage {
+  margin: 1rem auto;
+  color: #8dc941;
 }

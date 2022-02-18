@@ -1,6 +1,8 @@
-import styles from './Navigation.module.css';
+// Dependencies
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+// Styles
+import styles from './Navigation.module.css';
 // Hamburger Icon
 import { Divide as Hamburger } from 'hamburger-react';
 // Menu Icons
@@ -20,10 +22,12 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
   const urlLocation = useLocation();
   const [navbarOpen, setNavbarOpen] = useState(false);
 
+  // Toggle navigation menu
   const handleToggle = () => {
     setNavbarOpen(!navbarOpen);
   };
 
+  // Upon URL change, close the menu
   useEffect(() => {
     setNavbarOpen(false);
   }, [urlLocation]);
@@ -45,7 +49,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
       height: 'fit-content',
       opacity: 1,
       transition: {
-        x: { stiffness: 500},
+        x: { stiffness: 500 },
       },
     },
     closed: {
@@ -70,6 +74,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
         </h1>
         <div className={styles.buttonsArea}>
           <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 0.975 }}>
+            {/* If you're logged in, show the username instead of 'Login' */}
             {userInfo ? (
               <Link to='/user-profile'>{userInfo.username}</Link>
             ) : (
@@ -92,7 +97,6 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
       </nav>
       {/* List of Links when menu is toggled */}
       <motion.ul
-        // style={{ display: navbarOpen ? 'flex' : 'none' }}
         initial={false}
         animate={navbarOpen ? 'open' : 'closed'}
         variants={staggerVariants}
@@ -181,6 +185,7 @@ function Navigation({ setPetStatus, loggedIn, handleLogout, userInfo }) {
         </motion.li>
 
         <span></span>
+        {/* If you're logged in, display a logout button */}
         {loggedIn ? (
           <motion.li
             initial={false}

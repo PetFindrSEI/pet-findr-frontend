@@ -1,54 +1,59 @@
+// Dependencies
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './PetSlider.module.css'
+// Style
+import styles from './PetSlider.module.css';
 
+function LostPetSlider({ setPetStatus }) {
+  const [pets, setPets] = useState([]);
 
-function LostPetSlider({petStatus, setPetStatus}) {
+  // Get all pets
+  useEffect(() => {
+    getPets();
+  }, []);
 
-    const [pets, setPets] = useState([]);
-    
-    useEffect(() => {
-        getPets();
-    }, []);
+  async function getPets() {
+    const url = `https://petfindr-api.herokuapp.com/pets/lost`;
+    const res = await fetch(url);
+    const resJson = await res.json();
+    setPets(resJson);
+  }
 
-    async function getPets() {
-        const url = `https://petfindr-api.herokuapp.com/pets/lost`;
-        const res = await fetch(url);
-        const resJson = await res.json();
-        setPets(resJson);
-    }
+  if (!pets) {
+    return <p>Loading lost pets ...</p>;
+  }
 
-    if (!pets) {
-        return <p>Loading lost pets ...</p>
-    }
+  // Shuffle the pets so it's a new set every mount
+  let shuffledPets = pets.map((a) => ({ ...a }));
+  let shuffled = shuffledPets.sort(() => Math.random() - Math.random());
 
-    return (
-      <section className={styles.petsContainer}>
-        {pets.slice(0, 6).map((pet) => (
-          <div className={styles.petCard} key={pet.id}>
-            <Link to={`/pets/${pet.id}`} className={styles.link}>
-              <div className={styles.petImage}>
-                <img src={pet.photo} alt={pet.name} />
-              </div>
-              <div className={styles.cardTitle}>
-                <h3 className={styles.name}>{pet.name}</h3>
-                <h3 className={styles.status}>{pet.status}</h3>
-              </div>
-            </Link>
-          </div>
-        ))}
-        <div className={styles.endCard}>
-          <Link
-            to={`/dashboard`}
-            className={styles.linkAll}
-            onClick={() => {
-              setPetStatus({ status: 'Lost' });
-            }}>
-            See all lost pets
+  return (
+    <section className={styles.petsContainer}>
+      {shuffled.slice(0, 10).map((pet) => (
+        <div className={styles.petCard} key={pet.id}>
+          <Link to={`/pets/${pet.id}`} className={styles.link}>
+            <div className={styles.petImage}>
+              <img src={pet.photo} alt={pet.name} />
+            </div>
+            <div className={styles.cardTitle}>
+              <h3 className={styles.name}>{pet.name}</h3>
+              <h3 className={styles.status}>{pet.status}</h3>
+            </div>
           </Link>
         </div>
-      </section>
-    );
+      ))}
+      <Link
+        to={`/dashboard`}
+        className={styles.linkAll}
+        onClick={() => {
+          setPetStatus({ status: 'Lost' });
+        }}>
+        <div className={styles.endCard}>
+          <p>See all lost pets</p>
+        </div>
+      </Link>
+    </section>
+  );
 }
 
 export default LostPetSlider;
